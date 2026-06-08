@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import ClickCount from '../components/ClickCount'
+import Disclaimer from '../src/components/Disclaimer'
 import styles from '../styles/home.module.css'
 
 function throwError() {
@@ -64,6 +65,7 @@ function Home() {
         </Button>
       </div>
       <hr className={styles.hr} />
+      <Disclaimer />
     </main>
   )
 }
