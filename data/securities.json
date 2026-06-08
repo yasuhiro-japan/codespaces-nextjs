@@ -1,0 +1,361 @@
+{
+  "asOfDate": "2026-06-08",
+  "source": {
+    "name": "MVP seed security master compiled from public issuer and exchange reference data",
+    "url": "https://www.jpx.co.jp/english/equities/products/etfs/issues/index.html"
+  },
+  "securities": [
+    {
+      "id": "aapl",
+      "name": "Apple Inc.",
+      "localName": "アップル",
+      "ticker": "AAPL",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Information Technology",
+      "source": { "name": "Apple investor relations", "url": "https://investor.apple.com/" }
+    },
+    {
+      "id": "msft",
+      "name": "Microsoft Corporation",
+      "localName": "マイクロソフト",
+      "ticker": "MSFT",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Information Technology",
+      "source": { "name": "Microsoft investor relations", "url": "https://www.microsoft.com/en-us/Investor/" }
+    },
+    {
+      "id": "nvda",
+      "name": "NVIDIA Corporation",
+      "localName": "エヌビディア",
+      "ticker": "NVDA",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Information Technology",
+      "source": { "name": "NVIDIA investor relations", "url": "https://investor.nvidia.com/" }
+    },
+    {
+      "id": "amzn",
+      "name": "Amazon.com, Inc.",
+      "localName": "アマゾン・ドット・コム",
+      "ticker": "AMZN",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Consumer Discretionary",
+      "source": { "name": "Amazon investor relations", "url": "https://ir.aboutamazon.com/" }
+    },
+    {
+      "id": "meta",
+      "name": "Meta Platforms, Inc.",
+      "localName": "メタ・プラットフォームズ",
+      "ticker": "META",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Communication Services",
+      "source": { "name": "Meta investor relations", "url": "https://investor.fb.com/" }
+    },
+    {
+      "id": "avgo",
+      "name": "Broadcom Inc.",
+      "localName": "ブロードコム",
+      "ticker": "AVGO",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Information Technology",
+      "source": { "name": "Broadcom investor relations", "url": "https://investors.broadcom.com/" }
+    },
+    {
+      "id": "googl",
+      "name": "Alphabet Inc. Class A",
+      "localName": "アルファベット A",
+      "ticker": "GOOGL",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Communication Services",
+      "source": { "name": "Alphabet investor relations", "url": "https://abc.xyz/investor/" }
+    },
+    {
+      "id": "goog",
+      "name": "Alphabet Inc. Class C",
+      "localName": "アルファベット C",
+      "ticker": "GOOG",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Communication Services",
+      "source": { "name": "Alphabet investor relations", "url": "https://abc.xyz/investor/" }
+    },
+    {
+      "id": "brk-b",
+      "name": "Berkshire Hathaway Inc. Class B",
+      "localName": "バークシャー・ハサウェイ B",
+      "ticker": "BRK.B",
+      "exchange": "NYSE",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Financials",
+      "source": { "name": "Berkshire Hathaway", "url": "https://www.berkshirehathaway.com/" }
+    },
+    {
+      "id": "tsla",
+      "name": "Tesla, Inc.",
+      "localName": "テスラ",
+      "ticker": "TSLA",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Consumer Discretionary",
+      "source": { "name": "Tesla investor relations", "url": "https://ir.tesla.com/" }
+    },
+    {
+      "id": "tsm",
+      "name": "Taiwan Semiconductor Manufacturing Company Limited",
+      "localName": "台湾積体電路製造（TSMC）",
+      "ticker": "TSM",
+      "exchange": "NYSE",
+      "country": "TW",
+      "currency": "USD",
+      "sector": "Information Technology",
+      "source": { "name": "TSMC investor relations", "url": "https://investor.tsmc.com/" }
+    },
+    {
+      "id": "jpm",
+      "name": "JPMorgan Chase & Co.",
+      "localName": "JPモルガン・チェース",
+      "ticker": "JPM",
+      "exchange": "NYSE",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Financials",
+      "source": { "name": "JPMorgan Chase investor relations", "url": "https://www.jpmorganchase.com/ir" }
+    },
+    {
+      "id": "nflx",
+      "name": "Netflix, Inc.",
+      "localName": "ネットフリックス",
+      "ticker": "NFLX",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Communication Services",
+      "source": { "name": "Netflix investor relations", "url": "https://ir.netflix.net/" }
+    },
+    {
+      "id": "cost",
+      "name": "Costco Wholesale Corporation",
+      "localName": "コストコ・ホールセール",
+      "ticker": "COST",
+      "exchange": "NASDAQ",
+      "country": "US",
+      "currency": "USD",
+      "sector": "Consumer Staples",
+      "source": { "name": "Costco investor relations", "url": "https://investor.costco.com/" }
+    },
+    {
+      "id": "toyota-7203",
+      "name": "Toyota Motor Corporation",
+      "localName": "トヨタ自動車",
+      "ticker": "7203.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Transportation Equipment",
+      "source": { "name": "Toyota investor relations", "url": "https://global.toyota/en/ir/" }
+    },
+    {
+      "id": "mufg-8306",
+      "name": "Mitsubishi UFJ Financial Group, Inc.",
+      "localName": "三菱UFJフィナンシャル・グループ",
+      "ticker": "8306.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Banks",
+      "source": { "name": "Mitsubishi UFJ Financial Group investor relations", "url": "https://www.mufg.jp/english/ir/index.html" }
+    },
+    {
+      "id": "sony-6758",
+      "name": "Sony Group Corporation",
+      "localName": "ソニーグループ",
+      "ticker": "6758.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Electric Appliances",
+      "source": { "name": "Sony investor relations", "url": "https://www.sony.com/en/SonyInfo/IR/" }
+    },
+    {
+      "id": "hitachi-6501",
+      "name": "Hitachi, Ltd.",
+      "localName": "日立製作所",
+      "ticker": "6501.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Electric Appliances",
+      "source": { "name": "Hitachi investor relations", "url": "https://www.hitachi.com/IR-e/" }
+    },
+    {
+      "id": "recruit-6098",
+      "name": "Recruit Holdings Co., Ltd.",
+      "localName": "リクルートホールディングス",
+      "ticker": "6098.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Services",
+      "source": { "name": "Recruit investor relations", "url": "https://recruit-holdings.com/en/ir/" }
+    },
+    {
+      "id": "smfg-8316",
+      "name": "Sumitomo Mitsui Financial Group, Inc.",
+      "localName": "三井住友フィナンシャルグループ",
+      "ticker": "8316.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Banks",
+      "source": { "name": "SMFG investor relations", "url": "https://www.smfg.co.jp/english/investor/" }
+    },
+    {
+      "id": "keyence-6861",
+      "name": "Keyence Corporation",
+      "localName": "キーエンス",
+      "ticker": "6861.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Electric Appliances",
+      "source": { "name": "Keyence investor relations", "url": "https://www.keyence.co.jp/ir/" }
+    },
+    {
+      "id": "tokyo-electron-8035",
+      "name": "Tokyo Electron Limited",
+      "localName": "東京エレクトロン",
+      "ticker": "8035.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Electric Appliances",
+      "source": { "name": "Tokyo Electron investor relations", "url": "https://www.tel.com/ir/" }
+    },
+    {
+      "id": "softbank-group-9984",
+      "name": "SoftBank Group Corp.",
+      "localName": "ソフトバンクグループ",
+      "ticker": "9984.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Information & Communication",
+      "source": { "name": "SoftBank Group investor relations", "url": "https://group.softbank/en/ir" }
+    },
+    {
+      "id": "shinetsu-4063",
+      "name": "Shin-Etsu Chemical Co., Ltd.",
+      "localName": "信越化学工業",
+      "ticker": "4063.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Chemicals",
+      "source": { "name": "Shin-Etsu Chemical investor relations", "url": "https://www.shinetsu.co.jp/en/ir/" }
+    },
+    {
+      "id": "japan-tobacco-2914",
+      "name": "Japan Tobacco Inc.",
+      "localName": "日本たばこ産業",
+      "ticker": "2914.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Foods",
+      "source": { "name": "JT investor relations", "url": "https://www.jti.co.jp/investors/" }
+    },
+    {
+      "id": "inpex-1605",
+      "name": "INPEX Corporation",
+      "localName": "INPEX",
+      "ticker": "1605.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Mining",
+      "source": { "name": "INPEX investor relations", "url": "https://www.inpex.co.jp/english/ir/" }
+    },
+    {
+      "id": "mitsubishi-corp-8058",
+      "name": "Mitsubishi Corporation",
+      "localName": "三菱商事",
+      "ticker": "8058.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Wholesale Trade",
+      "source": { "name": "Mitsubishi Corporation investor relations", "url": "https://www.mitsubishicorp.com/jp/en/ir/" }
+    },
+    {
+      "id": "honda-7267",
+      "name": "Honda Motor Co., Ltd.",
+      "localName": "本田技研工業",
+      "ticker": "7267.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Transportation Equipment",
+      "source": { "name": "Honda investor relations", "url": "https://global.honda/en/investors/" }
+    },
+    {
+      "id": "mizuho-8411",
+      "name": "Mizuho Financial Group, Inc.",
+      "localName": "みずほフィナンシャルグループ",
+      "ticker": "8411.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Banks",
+      "source": { "name": "Mizuho Financial Group investor relations", "url": "https://www.mizuhogroup.com/investors" }
+    },
+    {
+      "id": "msad-8725",
+      "name": "MS&AD Insurance Group Holdings, Inc.",
+      "localName": "MS&ADインシュアランスグループホールディングス",
+      "ticker": "8725.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Insurance",
+      "source": { "name": "MS&AD investor relations", "url": "https://www.ms-ad-hd.com/en/ir/" }
+    },
+    {
+      "id": "takeda-4502",
+      "name": "Takeda Pharmaceutical Company Limited",
+      "localName": "武田薬品工業",
+      "ticker": "4502.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Pharmaceutical",
+      "source": { "name": "Takeda investor relations", "url": "https://www.takeda.com/investors/" }
+    },
+    {
+      "id": "tokio-marine-8766",
+      "name": "Tokio Marine Holdings, Inc.",
+      "localName": "東京海上ホールディングス",
+      "ticker": "8766.T",
+      "exchange": "TSE Prime",
+      "country": "JP",
+      "currency": "JPY",
+      "sector": "Insurance",
+      "source": { "name": "Tokio Marine investor relations", "url": "https://www.tokiomarinehd.com/en/ir/" }
+    }
+  ]
+}

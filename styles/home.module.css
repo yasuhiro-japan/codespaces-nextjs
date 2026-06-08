@@ -1,11 +1,71 @@
 .main {
   padding: 20px 20px 60px;
-  max-width: 680px;
+  max-width: 760px;
   margin: 0 auto;
 }
 
-.hr {
-  border: none;
-  border-bottom: 1px solid #efefef;
-  margin: 3em auto;
+.form {
+  display: grid;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.field input {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font: inherit;
+  padding: 10px 12px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.positions {
+  margin-top: 32px;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sectionHeader h2 {
+  margin-bottom: 0;
+}
+
+.emptyState {
+  color: #64748b;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.table th {
+  background: #f8fafc;
 }

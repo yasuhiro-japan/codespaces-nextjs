@@ -1,39 +1,85 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Button from '../components/Button'
 import ClickCount from '../components/ClickCount'
 import Disclaimer from '../src/components/Disclaimer'
 import styles from '../styles/home.module.css'
 
-function throwError() {
-  console.log(
-    // The function body() is not defined
-    document.body()
-  )
+const initialFormState = {
+  symbol: '',
+  quantity: '',
+  averagePrice: '',
+}
+
+function createPositionFromForm(form) {
+  return {
+    symbol: form.symbol.trim().toUpperCase(),
+    quantity: Number(form.quantity),
+    averagePrice: Number(form.averagePrice),
+  }
 }
 
 function Home() {
-  const [count, setCount] = useState(0)
-  const increment = useCallback(() => {
-    setCount((v) => v + 1)
-  }, [setCount])
-
+  const [positions, setPositions] = useState([])
+  const [form, setForm] = useState(initialFormState)
   useEffect(() => {
-    const r = setInterval(() => {
-      increment()
-    }, 1000)
+    setPositions(readPortfolioPositions())
+  }, [])
 
-    return () => {
-      clearInterval(r)
+  const totalCost = useMemo(
+    () =>
+      positions.reduce(
+        (sum, position) => sum + position.quantity * position.averagePrice,
+        0
+      ),
+    [positions]
+  )
+
+  function handleFormChange(event) {
+    const { name, value } = event.target
+
+    setForm((currentForm) => ({
+      ...currentForm,
+      [name]: value,
+    }))
+  }
+
+  function handleAddPosition(event) {
+    event.preventDefault()
+
+    const nextPosition = createPositionFromForm(form)
+
+    if (
+      !nextPosition.symbol ||
+      !Number.isFinite(nextPosition.quantity) ||
+      nextPosition.quantity < 0 ||
+      !Number.isFinite(nextPosition.averagePrice) ||
+      nextPosition.averagePrice < 0
+    ) {
+      return
     }
-  }, [increment])
+
+    setPositions((currentPositions) => {
+      const nextPositions = [...currentPositions, nextPosition]
+
+      savePortfolioPositions(nextPositions)
+
+      return nextPositions
+    })
+    setForm(initialFormState)
+  }
+
+  function handleResetInputs() {
+    setForm(initialFormState)
+    setPositions([])
+    clearPortfolioPositions()
+  }
 
   return (
     <main className={styles.main}>
-      <h1>Fast Refresh Demo</h1>
+      <h1>Portfolio Positions</h1>
       <p>
-        Fast Refresh is a Next.js feature that gives you instantaneous feedback
-        on edits made to your React components, without ever losing component
-        state.
+        Enter your holdings and they will be restored from LocalStorage on the
+        next page load. Invalid saved data is ignored automatically.
       </p>
       <hr className={styles.hr} />
       <div>
