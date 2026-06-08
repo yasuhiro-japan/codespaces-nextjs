@@ -1,0 +1,97 @@
+{
+  "asOfDate": "2026-06-08",
+  "source": {
+    "name": "MVP seed fund master compiled from public fund pages",
+    "url": "https://emaxis.am.mufg.jp/"
+  },
+  "funds": [
+    {
+      "id": "emaxis-slim-sp500",
+      "name": "eMAXIS Slim 米国株式（S&P500）",
+      "shortName": "eMAXIS Slim S&P500",
+      "instrumentType": "investment_trust",
+      "provider": "三菱UFJアセットマネジメント",
+      "countryOfDomicile": "JP",
+      "currency": "JPY",
+      "isin": "JP90C000GKC6",
+      "fundAssociationCode": "03311187",
+      "benchmark": "S&P500指数（配当込み、円換算ベース）",
+      "assetClass": "equity",
+      "region": "United States",
+      "source": {
+        "name": "三菱UFJアセットマネジメント fund page",
+        "url": "https://emaxis.am.mufg.jp/fund/253266.html"
+      }
+    },
+    {
+      "id": "emaxis-slim-all-country",
+      "name": "eMAXIS Slim 全世界株式（オール・カントリー）",
+      "shortName": "オルカン",
+      "instrumentType": "investment_trust",
+      "provider": "三菱UFJアセットマネジメント",
+      "countryOfDomicile": "JP",
+      "currency": "JPY",
+      "isin": "JP90C000H1T1",
+      "fundAssociationCode": "0331418A",
+      "benchmark": "MSCI オール・カントリー・ワールド・インデックス（配当込み、円換算ベース）",
+      "assetClass": "equity",
+      "region": "Global",
+      "source": {
+        "name": "三菱UFJアセットマネジメント fund page",
+        "url": "https://emaxis.am.mufg.jp/fund/253425.html"
+      }
+    },
+    {
+      "id": "emaxis-nasdaq100",
+      "name": "eMAXIS NASDAQ100インデックス",
+      "shortName": "eMAXIS NASDAQ100",
+      "instrumentType": "investment_trust",
+      "provider": "三菱UFJアセットマネジメント",
+      "countryOfDomicile": "JP",
+      "currency": "JPY",
+      "isin": "JP90C000L9D2",
+      "fundAssociationCode": "0331A211",
+      "benchmark": "NASDAQ100指数（配当込み、円換算ベース）",
+      "assetClass": "equity",
+      "region": "United States",
+      "source": {
+        "name": "楽天証券 fund detail page",
+        "url": "https://www.rakuten-sec.co.jp/web/fund/detail/?ID=JP90C000L9D2"
+      }
+    },
+    {
+      "id": "nextfunds-topix-1306",
+      "name": "NEXT FUNDS TOPIX連動型上場投信",
+      "shortName": "NF・TOPIX ETF",
+      "instrumentType": "etf",
+      "provider": "野村アセットマネジメント",
+      "countryOfDomicile": "JP",
+      "currency": "JPY",
+      "ticker": "1306.T",
+      "benchmark": "TOPIX（配当込み）",
+      "assetClass": "equity",
+      "region": "Japan",
+      "source": {
+        "name": "NEXT FUNDS fund page",
+        "url": "https://nextfunds.jp/lineup/1306/"
+      }
+    },
+    {
+      "id": "nextfunds-nikkei-high-dividend-1489",
+      "name": "NEXT FUNDS 日経平均高配当株50指数連動型上場投信",
+      "shortName": "NF・日経高配当50 ETF",
+      "instrumentType": "etf",
+      "provider": "野村アセットマネジメント",
+      "countryOfDomicile": "JP",
+      "currency": "JPY",
+      "ticker": "1489.T",
+      "benchmark": "日経平均高配当株50指数（トータルリターン）",
+      "assetClass": "equity",
+      "region": "Japan",
+      "source": {
+        "name": "NEXT FUNDS fund page",
+        "url": "https://nextfunds.jp/lineup/1489/"
+      }
+    }
+  ]
+}

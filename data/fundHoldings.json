@@ -1,0 +1,119 @@
+{
+  "asOfDate": "2026-06-08",
+  "source": {
+    "name": "MVP seed holdings from public fund reports and index/fund pages",
+    "url": "https://emaxis.am.mufg.jp/"
+  },
+  "notes": [
+    "MVPでは全銘柄を網羅せず、画面表示用に上位10銘柄程度のみを登録します。",
+    "coverageRate は登録済み上位銘柄の構成比率合計で、ファンド全体に対するカバレッジ率として表示できます。",
+    "weights はパーセント表記です。運用会社の月報・ETFページ更新に合わせて差し替える前提の静的シードデータです。"
+  ],
+  "holdings": [
+    {
+      "fundId": "emaxis-slim-sp500",
+      "asOfDate": "2026-05-30",
+      "coverageRate": 35.0,
+      "source": {
+        "name": "三菱UFJアセットマネジメント 月報 / S&P 500 constituent reference",
+        "url": "https://emaxis.am.mufg.jp/fund/253266.html"
+      },
+      "constituents": [
+        { "securityId": "aapl", "rank": 1, "weight": 6.9 },
+        { "securityId": "msft", "rank": 2, "weight": 6.3 },
+        { "securityId": "nvda", "rank": 3, "weight": 6.1 },
+        { "securityId": "amzn", "rank": 4, "weight": 3.7 },
+        { "securityId": "meta", "rank": 5, "weight": 2.7 },
+        { "securityId": "avgo", "rank": 6, "weight": 2.2 },
+        { "securityId": "googl", "rank": 7, "weight": 2.0 },
+        { "securityId": "goog", "rank": 8, "weight": 1.7 },
+        { "securityId": "brk-b", "rank": 9, "weight": 1.7 },
+        { "securityId": "tsla", "rank": 10, "weight": 1.7 }
+      ]
+    },
+    {
+      "fundId": "emaxis-slim-all-country",
+      "asOfDate": "2026-05-30",
+      "coverageRate": 21.7,
+      "source": {
+        "name": "三菱UFJアセットマネジメント 月報 / MSCI ACWI constituent reference",
+        "url": "https://emaxis.am.mufg.jp/fund/253425.html"
+      },
+      "constituents": [
+        { "securityId": "nvda", "rank": 1, "weight": 4.7 },
+        { "securityId": "msft", "rank": 2, "weight": 3.9 },
+        { "securityId": "aapl", "rank": 3, "weight": 3.5 },
+        { "securityId": "amzn", "rank": 4, "weight": 2.4 },
+        { "securityId": "meta", "rank": 5, "weight": 1.7 },
+        { "securityId": "avgo", "rank": 6, "weight": 1.4 },
+        { "securityId": "googl", "rank": 7, "weight": 1.2 },
+        { "securityId": "tsm", "rank": 8, "weight": 1.1 },
+        { "securityId": "jpm", "rank": 9, "weight": 0.9 },
+        { "securityId": "tsla", "rank": 10, "weight": 0.9 }
+      ]
+    },
+    {
+      "fundId": "emaxis-nasdaq100",
+      "asOfDate": "2026-05-30",
+      "coverageRate": 48.2,
+      "source": {
+        "name": "楽天証券 fund detail / NASDAQ-100 constituent reference",
+        "url": "https://www.rakuten-sec.co.jp/web/fund/detail/?ID=JP90C000L9D2"
+      },
+      "constituents": [
+        { "securityId": "nvda", "rank": 1, "weight": 8.8 },
+        { "securityId": "msft", "rank": 2, "weight": 7.8 },
+        { "securityId": "aapl", "rank": 3, "weight": 7.5 },
+        { "securityId": "amzn", "rank": 4, "weight": 5.4 },
+        { "securityId": "avgo", "rank": 5, "weight": 4.6 },
+        { "securityId": "meta", "rank": 6, "weight": 3.7 },
+        { "securityId": "nflx", "rank": 7, "weight": 2.8 },
+        { "securityId": "tsla", "rank": 8, "weight": 2.7 },
+        { "securityId": "cost", "rank": 9, "weight": 2.5 },
+        { "securityId": "goog", "rank": 10, "weight": 2.4 }
+      ]
+    },
+    {
+      "fundId": "nextfunds-topix-1306",
+      "asOfDate": "2026-06-08",
+      "coverageRate": 20.8,
+      "source": {
+        "name": "NEXT FUNDS TOPIX ETF fund page / setting portfolio information",
+        "url": "https://nextfunds.jp/lineup/1306/"
+      },
+      "constituents": [
+        { "securityId": "toyota-7203", "rank": 1, "weight": 3.2 },
+        { "securityId": "mufg-8306", "rank": 2, "weight": 2.6 },
+        { "securityId": "sony-6758", "rank": 3, "weight": 2.5 },
+        { "securityId": "hitachi-6501", "rank": 4, "weight": 2.4 },
+        { "securityId": "recruit-6098", "rank": 5, "weight": 2.0 },
+        { "securityId": "smfg-8316", "rank": 6, "weight": 1.9 },
+        { "securityId": "keyence-6861", "rank": 7, "weight": 1.7 },
+        { "securityId": "tokyo-electron-8035", "rank": 8, "weight": 1.6 },
+        { "securityId": "softbank-group-9984", "rank": 9, "weight": 1.5 },
+        { "securityId": "shinetsu-4063", "rank": 10, "weight": 1.4 }
+      ]
+    },
+    {
+      "fundId": "nextfunds-nikkei-high-dividend-1489",
+      "asOfDate": "2026-06-08",
+      "coverageRate": 41.2,
+      "source": {
+        "name": "NEXT FUNDS Nikkei High Dividend 50 ETF fund page / monthly report",
+        "url": "https://nextfunds.jp/lineup/1489/"
+      },
+      "constituents": [
+        { "securityId": "mufg-8306", "rank": 1, "weight": 5.8 },
+        { "securityId": "japan-tobacco-2914", "rank": 2, "weight": 5.0 },
+        { "securityId": "inpex-1605", "rank": 3, "weight": 4.5 },
+        { "securityId": "mitsubishi-corp-8058", "rank": 4, "weight": 4.3 },
+        { "securityId": "smfg-8316", "rank": 5, "weight": 4.2 },
+        { "securityId": "honda-7267", "rank": 6, "weight": 4.0 },
+        { "securityId": "mizuho-8411", "rank": 7, "weight": 3.9 },
+        { "securityId": "msad-8725", "rank": 8, "weight": 3.5 },
+        { "securityId": "takeda-4502", "rank": 9, "weight": 3.2 },
+        { "securityId": "tokio-marine-8766", "rank": 10, "weight": 2.8 }
+      ]
+    }
+  ]
+}
