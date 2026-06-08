@@ -1,10 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Button from '../components/Button'
-import {
-  clearPortfolioPositions,
-  readPortfolioPositions,
-  savePortfolioPositions,
-} from '../src/lib/storage'
+import ClickCount from '../components/ClickCount'
+import Disclaimer from '../src/components/Disclaimer'
 import styles from '../styles/home.module.css'
 
 const initialFormState = {
@@ -84,79 +81,37 @@ function Home() {
         Enter your holdings and they will be restored from LocalStorage on the
         next page load. Invalid saved data is ignored automatically.
       </p>
-
-      <form className={styles.form} onSubmit={handleAddPosition}>
-        <label className={styles.field}>
-          Ticker symbol
-          <input
-            name="symbol"
-            placeholder="AAPL"
-            value={form.symbol}
-            onChange={handleFormChange}
-            required
-          />
-        </label>
-        <label className={styles.field}>
-          Quantity
-          <input
-            name="quantity"
-            min="0"
-            placeholder="10"
-            step="any"
-            type="number"
-            value={form.quantity}
-            onChange={handleFormChange}
-            required
-          />
-        </label>
-        <label className={styles.field}>
-          Average price
-          <input
-            name="averagePrice"
-            min="0"
-            placeholder="180.50"
-            step="any"
-            type="number"
-            value={form.averagePrice}
-            onChange={handleFormChange}
-            required
-          />
-        </label>
-        <div className={styles.actions}>
-          <Button type="submit">Add position</Button>
-          <Button onClick={handleResetInputs}>入力をリセット</Button>
-        </div>
-      </form>
-
-      <section className={styles.positions} aria-live="polite">
-        <div className={styles.sectionHeader}>
-          <h2>Saved positions</h2>
-          <p>Total cost: ${totalCost.toLocaleString()}</p>
-        </div>
-
-        {positions.length === 0 ? (
-          <p className={styles.emptyState}>No positions saved yet.</p>
-        ) : (
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Symbol</th>
-                <th>Quantity</th>
-                <th>Average price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {positions.map((position, index) => (
-                <tr key={`${position.symbol}-${index}`}>
-                  <td>{position.symbol}</td>
-                  <td>{position.quantity.toLocaleString()}</td>
-                  <td>${position.averagePrice.toLocaleString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </section>
+      <hr className={styles.hr} />
+      <div>
+        <p>
+          Auto incrementing value. The counter won't reset after edits or if
+          there are errors.
+        </p>
+        <p>Current value: {count}</p>
+      </div>
+      <hr className={styles.hr} />
+      <div>
+        <p>Component with state.</p>
+        <ClickCount />
+      </div>
+      <hr className={styles.hr} />
+      <div>
+        <p>
+          The button below will throw 2 errors. You'll see the error overlay to
+          let you know about the errors but it won't break the page or reset
+          your state.
+        </p>
+        <Button
+          onClick={(e) => {
+            setTimeout(() => document.parentNode(), 0)
+            throwError()
+          }}
+        >
+          Throw an Error
+        </Button>
+      </div>
+      <hr className={styles.hr} />
+      <Disclaimer />
     </main>
   )
 }
