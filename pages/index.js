@@ -1,69 +1,162 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Button from '../components/Button'
-import ClickCount from '../components/ClickCount'
+import {
+  clearPortfolioPositions,
+  readPortfolioPositions,
+  savePortfolioPositions,
+} from '../src/lib/storage'
 import styles from '../styles/home.module.css'
 
-function throwError() {
-  console.log(
-    // The function body() is not defined
-    document.body()
-  )
+const initialFormState = {
+  symbol: '',
+  quantity: '',
+  averagePrice: '',
+}
+
+function createPositionFromForm(form) {
+  return {
+    symbol: form.symbol.trim().toUpperCase(),
+    quantity: Number(form.quantity),
+    averagePrice: Number(form.averagePrice),
+  }
 }
 
 function Home() {
-  const [count, setCount] = useState(0)
-  const increment = useCallback(() => {
-    setCount((v) => v + 1)
-  }, [setCount])
-
+  const [positions, setPositions] = useState([])
+  const [form, setForm] = useState(initialFormState)
   useEffect(() => {
-    const r = setInterval(() => {
-      increment()
-    }, 1000)
+    setPositions(readPortfolioPositions())
+  }, [])
 
-    return () => {
-      clearInterval(r)
+  const totalCost = useMemo(
+    () =>
+      positions.reduce(
+        (sum, position) => sum + position.quantity * position.averagePrice,
+        0
+      ),
+    [positions]
+  )
+
+  function handleFormChange(event) {
+    const { name, value } = event.target
+
+    setForm((currentForm) => ({
+      ...currentForm,
+      [name]: value,
+    }))
+  }
+
+  function handleAddPosition(event) {
+    event.preventDefault()
+
+    const nextPosition = createPositionFromForm(form)
+
+    if (
+      !nextPosition.symbol ||
+      !Number.isFinite(nextPosition.quantity) ||
+      nextPosition.quantity < 0 ||
+      !Number.isFinite(nextPosition.averagePrice) ||
+      nextPosition.averagePrice < 0
+    ) {
+      return
     }
-  }, [increment])
+
+    setPositions((currentPositions) => {
+      const nextPositions = [...currentPositions, nextPosition]
+
+      savePortfolioPositions(nextPositions)
+
+      return nextPositions
+    })
+    setForm(initialFormState)
+  }
+
+  function handleResetInputs() {
+    setForm(initialFormState)
+    setPositions([])
+    clearPortfolioPositions()
+  }
 
   return (
     <main className={styles.main}>
-      <h1>Fast Refresh Demo</h1>
+      <h1>Portfolio Positions</h1>
       <p>
-        Fast Refresh is a Next.js feature that gives you instantaneous feedback
-        on edits made to your React components, without ever losing component
-        state.
+        Enter your holdings and they will be restored from LocalStorage on the
+        next page load. Invalid saved data is ignored automatically.
       </p>
-      <hr className={styles.hr} />
-      <div>
-        <p>
-          Auto incrementing value. The counter won't reset after edits or if
-          there are errors.
-        </p>
-        <p>Current value: {count}</p>
-      </div>
-      <hr className={styles.hr} />
-      <div>
-        <p>Component with state.</p>
-        <ClickCount />
-      </div>
-      <hr className={styles.hr} />
-      <div>
-        <p>
-          The button below will throw 2 errors. You'll see the error overlay to
-          let you know about the errors but it won't break the page or reset
-          your state.
-        </p>
-        <Button
-          onClick={(e) => {
-            setTimeout(() => document.parentNode(), 0)
-            throwError()
-          }}
-        >
-          Throw an Error
-        </Button>
-      </div>
-      <hr className={styles.hr} />
+
+      <form className={styles.form} onSubmit={handleAddPosition}>
+        <label className={styles.field}>
+          Ticker symbol
+          <input
+            name="symbol"
+            placeholder="AAPL"
+            value={form.symbol}
+            onChange={handleFormChange}
+            required
+          />
+        </label>
+        <label className={styles.field}>
+          Quantity
+          <input
+            name="quantity"
+            min="0"
+            placeholder="10"
+            step="any"
+            type="number"
+            value={form.quantity}
+            onChange={handleFormChange}
+            required
+          />
+        </label>
+        <label className={styles.field}>
+          Average price
+          <input
+            name="averagePrice"
+            min="0"
+            placeholder="180.50"
+            step="any"
+            type="number"
+            value={form.averagePrice}
+            onChange={handleFormChange}
+            required
+          />
+        </label>
+        <div className={styles.actions}>
+          <Button type="submit">Add position</Button>
+          <Button onClick={handleResetInputs}>入力をリセット</Button>
+        </div>
+      </form>
+
+      <section className={styles.positions} aria-live="polite">
+        <div className={styles.sectionHeader}>
+          <h2>Saved positions</h2>
+          <p>Total cost: ${totalCost.toLocaleString()}</p>
+        </div>
+
+        {positions.length === 0 ? (
+          <p className={styles.emptyState}>No positions saved yet.</p>
+        ) : (
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Quantity</th>
+                <th>Average price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {positions.map((position, index) => (
+                <tr key={`${position.symbol}-${index}`}>
+                  <td>{position.symbol}</td>
+                  <td>{position.quantity.toLocaleString()}</td>
+                  <td>${position.averagePrice.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </section>
     </main>
   )
 }
