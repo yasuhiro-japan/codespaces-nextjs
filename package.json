@@ -11,9 +11,9 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "@types/react": "^18.2.0",
-    "typescript": "^5.9.0"
+    "@types/node": "24.13.1",
+    "@types/react": "18.3.31",
+    "typescript": "5.9.3"
   },
   "overrides": {
     "postcss": "^8.5.10"
