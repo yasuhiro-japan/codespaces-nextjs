@@ -1,6 +1,13 @@
 export type CurrencyCode = string
 
-export type FundType = 'etf' | 'mutualFund' | 'indexFund' | 'other'
+export type ISODateString = string
+
+export type FundType =
+  | 'etf'
+  | 'mutualFund'
+  | 'indexFund'
+  | 'listedInvestmentTrust'
+  | 'other'
 
 export type HoldingConfidence = 'high' | 'medium' | 'low'
 
@@ -18,6 +25,7 @@ export interface Fund {
   type: FundType
   provider: string
   currency: CurrencyCode
+  /** Annual expense ratio as a decimal. For example, 0.0009 means 0.09%. */
   expenseRatio: number
   benchmark: string
 }
@@ -35,8 +43,9 @@ export interface Security {
 export interface FundHolding {
   fundId: Fund['id']
   securityId: Security['id']
+  /** Holding weight as a decimal. For example, 0.125 means 12.5%. */
   weight: number
-  asOfDate: string
+  asOfDate: ISODateString
   source: string
   confidence: HoldingConfidence
 }
@@ -47,13 +56,15 @@ export interface UserPosition {
   accountType: AccountType
 }
 
-export interface SecurityPositionFundBreakdown {
+export interface AnalyzedSecurityPositionFundBreakdown {
   fundId: Fund['id']
   fundName: Fund['name']
   fundTicker: Fund['ticker']
+  accountType: UserPosition['accountType']
   holdingWeight: FundHolding['weight']
-  userAmount: UserPosition['amount']
-  amount: number
+  userPositionAmount: UserPosition['amount']
+  securityAmount: number
+  /** Contribution to the total portfolio as a decimal. */
   portfolioWeight: number
 }
 
@@ -64,7 +75,9 @@ export interface AnalyzedSecurityPosition {
   country: Security['country']
   sector: Security['sector']
   currency: Security['currency']
+  /** Aggregated look-through amount across all user fund positions. */
   amount: number
+  /** Aggregated look-through portfolio ratio as a decimal. */
   portfolioWeight: number
-  fundBreakdown: SecurityPositionFundBreakdown[]
+  fundBreakdown: AnalyzedSecurityPositionFundBreakdown[]
 }
