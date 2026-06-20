@@ -1,5 +1,7 @@
 import type { Trip, Day } from '../types/trip';
 
+const STORAGE_KEY = 'tripplan_trips';
+
 const sampleTrips: Trip[] = [
   {
     id: 1,
@@ -138,32 +140,83 @@ const sampleTrips: Trip[] = [
   },
 ];
 
-let trips: Trip[] = sampleTrips;
-let nextTripId = sampleTrips.length + 1;
-let nextSpotId = sampleTrips
-  .flatMap((trip) => trip.days.flatMap((day) => day.spots.map((spot) => spot.id)))
-  .reduce((max, id) => Math.max(max, id), 0) + 1;
+function isClient(): boolean {
+  return typeof window !== 'undefined';
+}
+
+function loadFromStorage(): Trip[] {
+  if (!isClient()) return sampleTrips;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw) as Trip[];
+  } catch {
+    // corrupted data — fall through to seed
+  }
+  // First visit: seed with sample trips
+  saveToStorage(sampleTrips);
+  return sampleTrips;
+}
+
+function saveToStorage(data: Trip[]): void {
+  if (!isClient()) return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch {
+    // storage quota exceeded — ignore
+  }
+}
+
+function maxId(data: Trip[]): number {
+  return data
+    .flatMap((trip) => trip.days.flatMap((day) => day.spots.map((spot) => spot.id)))
+    .reduce((max, id) => Math.max(max, id), 0);
+}
+
+// Lazily initialized on first access
+let _trips: Trip[] | null = null;
+let _nextTripId: number | null = null;
+let _nextSpotId: number | null = null;
+
+function ensureLoaded(): void {
+  if (_trips !== null) return;
+  _trips = loadFromStorage();
+  _nextTripId = _trips.reduce((max, t) => Math.max(max, t.id), 0) + 1;
+  _nextSpotId = maxId(_trips) + 1;
+}
 
 export function getTrips(): Trip[] {
-  return trips;
+  ensureLoaded();
+  return _trips!;
 }
 
 export function getTrip(id: number): Trip | undefined {
-  return trips.find((t) => t.id === id);
+  ensureLoaded();
+  return _trips!.find((t) => t.id === id);
 }
 
 export function addTrip(data: Omit<Trip, 'id' | 'days'>): Trip {
-  const newTrip: Trip = { ...data, id: nextTripId++, days: generateDays(data.startDate, data.endDate) };
-  trips = [...trips, newTrip];
+  ensureLoaded();
+  const newTrip: Trip = { ...data, id: _nextTripId!++, days: generateDays(data.startDate, data.endDate) };
+  _trips = [..._trips!, newTrip];
+  saveToStorage(_trips);
   return newTrip;
 }
 
 export function updateTrip(trip: Trip): void {
-  trips = trips.map((t) => (t.id === trip.id ? trip : t));
+  ensureLoaded();
+  _trips = _trips!.map((t) => (t.id === trip.id ? trip : t));
+  saveToStorage(_trips);
+}
+
+export function deleteTrip(id: number): void {
+  ensureLoaded();
+  _trips = _trips!.filter((t) => t.id !== id);
+  saveToStorage(_trips);
 }
 
 export function nextSpotId_get(): number {
-  return nextSpotId++;
+  ensureLoaded();
+  return _nextSpotId!++;
 }
 
 function generateDays(startDate: string, endDate: string): Day[] {

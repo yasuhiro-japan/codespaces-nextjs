@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import type { Trip } from '../src/types/trip';
 import { getTrips, addTrip } from '../src/lib/store';
 import styles from '../styles/tripplan.module.css';
@@ -73,6 +74,13 @@ export default function HomePage() {
 
   return (
     <div className={styles.app}>
+      <Head>
+        <title>TripPlan — 旅行プランを管理・共有</title>
+        <meta name="description" content="旅行の日程・スポット・費用を管理して、URLで仲間に共有できる旅行プランアプリ" />
+        <meta property="og:title" content="TripPlan" />
+        <meta property="og:description" content="旅行の日程・スポット・費用を管理して、URLで仲間に共有できる旅行プランアプリ" />
+        <meta property="og:type" content="website" />
+      </Head>
       <div className={styles.homeHeader}>
         <h1 className={styles.homeTitle}>TripPlan</h1>
         <button className={styles.addBtn} onClick={openModal}>

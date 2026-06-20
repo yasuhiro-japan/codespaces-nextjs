@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import type { Trip, Spot, Cost, SpotCategory } from '../../src/types/trip';
 import { getTrip, updateTrip, nextSpotId_get } from '../../src/lib/store';
 import { recalcTimes, calcEndTime } from '../../src/lib/recalcTimes';
@@ -261,7 +262,8 @@ interface ShareModalProps {
 
 function ShareModal({ tripId, onClose }: ShareModalProps) {
   const [copied, setCopied] = useState(false);
-  const url = `https://tripplan.app/share/${tripId}`;
+  const origin = typeof window !== 'undefined' ? window.location.origin : '';
+  const url = `${origin}/share/${tripId}`;
 
   const copy = async () => {
     await navigator.clipboard.writeText(url);
@@ -368,6 +370,11 @@ export default function TripDetailPage() {
 
   return (
     <div className={styles.app}>
+      <Head>
+        <title>{trip.title} — TripPlan</title>
+        <meta name="description" content={`${trip.destination} の旅行プラン`} />
+      </Head>
+
       {/* Back */}
       <div style={{ padding: '20px 32px 0' }}>
         <button className={styles.backBtn} onClick={() => router.push('/')}>
