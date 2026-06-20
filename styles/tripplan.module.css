@@ -1,0 +1,684 @@
+/* ========================
+   Base Layout
+   ======================== */
+.app {
+  min-height: 100vh;
+  background: #0e0e0e;
+  color: #e8e8e8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ========================
+   Home
+   ======================== */
+.homeHeader {
+  padding: 40px 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.homeTitle {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: #4f7cf7;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.addBtn:hover { background: #3a68e0; }
+
+.tripGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 0 32px 48px;
+}
+
+/* Trip Card */
+.tripCard {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.1s;
+}
+.tripCard:hover {
+  border-color: #4f7cf7;
+  transform: translateY(-2px);
+}
+
+.tripCardIcon {
+  font-size: 36px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.tripCardTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.tripCardDestination {
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 12px;
+}
+
+.tripCardMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tripCardDate {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.tripCardDays {
+  font-size: 12px;
+  background: #2a2a2a;
+  color: #ccc;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Empty state */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 32px;
+  color: #555;
+  text-align: center;
+}
+.emptyIcon { font-size: 56px; margin-bottom: 16px; }
+.emptyText { font-size: 16px; margin-bottom: 8px; color: #666; }
+.emptySubText { font-size: 13px; color: #444; }
+
+/* ========================
+   Modal
+   ======================== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.modalTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 24px;
+}
+
+/* Icon picker */
+.iconPickerLabel {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.iconGrid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.iconBtn {
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: #252525;
+  cursor: pointer;
+  transition: border-color 0.1s;
+}
+.iconBtn:hover { border-color: #4f7cf7; }
+.iconBtnActive { border-color: #4f7cf7 !important; background: #1c2e5e !important; }
+
+/* Form fields */
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.formLabel {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.formInput {
+  width: 100%;
+  background: #252525;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #e8e8e8;
+  font-size: 14px;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.formInput:focus { border-color: #4f7cf7; }
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.btnPrimary {
+  flex: 1;
+  padding: 12px;
+  background: #4f7cf7;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btnPrimary:hover { background: #3a68e0; }
+.btnPrimary:disabled { background: #2a3a6a; color: #555; cursor: not-allowed; }
+
+.btnSecondary {
+  padding: 12px 20px;
+  background: #252525;
+  color: #aaa;
+  border: 1px solid #333;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btnSecondary:hover { background: #2f2f2f; }
+
+/* ========================
+   Trip Detail
+   ======================== */
+.detailHeader {
+  padding: 32px 32px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.detailHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.detailIcon { font-size: 40px; }
+
+.detailTitleGroup { display: flex; flex-direction: column; gap: 4px; }
+
+.detailTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.detailMeta {
+  font-size: 13px;
+  color: #888;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.backBtn:hover { color: #ccc; }
+
+.shareBtn {
+  padding: 8px 16px;
+  background: #252525;
+  color: #ccc;
+  border: 1px solid #333;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.shareBtn:hover { background: #2f2f2f; }
+
+/* Day tabs */
+.dayTabsWrapper {
+  padding: 24px 32px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.dayTabsWrapper::-webkit-scrollbar { display: none; }
+
+.dayTabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 0;
+  min-width: max-content;
+}
+
+.dayTab {
+  padding: 8px 16px 12px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 13px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.1s, border-color 0.1s;
+  white-space: nowrap;
+}
+.dayTab:hover { color: #ccc; }
+.dayTabActive {
+  color: #4f7cf7;
+  border-bottom-color: #4f7cf7;
+  font-weight: 600;
+}
+
+/* View tabs */
+.viewTabsWrapper {
+  padding: 16px 32px 0;
+}
+
+.viewTabs {
+  display: inline-flex;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.viewTab {
+  padding: 6px 16px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.1s, color 0.1s;
+}
+.viewTab:hover { color: #ccc; }
+.viewTabActive {
+  background: #4f7cf7;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Schedule */
+.scheduleWrapper {
+  padding: 20px 32px 80px;
+}
+
+/* Spot row */
+.spotList { display: flex; flex-direction: column; gap: 8px; }
+
+.spotRow {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.1s;
+  user-select: none;
+}
+.spotRow:hover { border-color: #3a3a3a; }
+.spotRowDragging { opacity: 0.4; }
+.spotRowDragOver { border-color: #4f7cf7; border-style: dashed; }
+
+.spotTime {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+}
+.spotTimeStart { font-size: 13px; font-weight: 600; color: #ccc; }
+.spotTimeEnd { font-size: 11px; color: #555; }
+
+.spotInfo { display: flex; flex-direction: column; gap: 6px; }
+
+.spotNameRow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.spotName { font-size: 15px; font-weight: 600; color: #fff; }
+
+.spotBadges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+
+.categoryBadge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.cat観光 { background: #1e2b5c; color: #7c9ef7; }
+.catグルメ { background: #3a2800; color: #f0a030; }
+.cat散策 { background: #0f2d1a; color: #4caf70; }
+.cat体験 { background: #3a0f28; color: #f07ab0; }
+.cat宿泊 { background: #2a2a2a; color: #aaa; }
+
+.durationBadge {
+  font-size: 11px;
+  color: #666;
+}
+
+.spotNote {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.4;
+}
+
+.spotFooter { display: flex; align-items: center; gap: 10px; }
+
+.spotCost { font-size: 12px; color: #aaa; }
+.spotLink { font-size: 13px; color: #4f7cf7; text-decoration: none; }
+.spotLink:hover { text-decoration: underline; }
+
+.spotDeleteBtn {
+  background: none;
+  border: none;
+  color: #444;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.1s, background 0.1s;
+  line-height: 1;
+  align-self: start;
+}
+.spotDeleteBtn:hover { color: #e05050; background: #2a1a1a; }
+
+/* Add spot button */
+.addSpotBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: none;
+  border: 1px dashed #333;
+  border-radius: 12px;
+  color: #666;
+  font-size: 13px;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.15s, color 0.15s;
+}
+.addSpotBtn:hover { border-color: #4f7cf7; color: #4f7cf7; }
+
+/* Add spot form (inline) */
+.addSpotForm {
+  margin-top: 12px;
+  padding: 20px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+}
+
+.addSpotFormTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ccc;
+  margin: 0 0 16px;
+}
+
+.formSelect {
+  width: 100%;
+  background: #252525;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #e8e8e8;
+  font-size: 14px;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s;
+  appearance: none;
+}
+.formSelect:focus { border-color: #4f7cf7; }
+
+.formTextarea {
+  width: 100%;
+  background: #252525;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #e8e8e8;
+  font-size: 14px;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  outline: none;
+  resize: vertical;
+  min-height: 72px;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+.formTextarea:focus { border-color: #4f7cf7; }
+
+/* Cost rows in form */
+.costRows { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.costRow { display: flex; gap: 8px; align-items: center; }
+.costRow .formInput { flex: 1; }
+.costDeleteBtn {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+.costDeleteBtn:hover { color: #e05050; }
+
+.addCostBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  background: none;
+  border: none;
+  color: #4f7cf7;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+}
+.addCostBtn:hover { text-decoration: underline; }
+.addCostBtnDisabled { color: #333 !important; cursor: not-allowed !important; }
+
+/* Map view */
+.mapView {
+  padding: 20px 32px;
+}
+
+.mapDestination {
+  font-size: 16px;
+  font-weight: 600;
+  color: #aaa;
+  margin-bottom: 16px;
+}
+
+.mapSpotItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.mapSpotTime { font-size: 12px; color: #666; min-width: 80px; }
+.mapSpotName { font-size: 14px; font-weight: 600; color: #ddd; flex: 1; }
+.mapSpotDuration { font-size: 12px; color: #666; }
+
+/* Spot detail modal */
+.spotDetailModal {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 20px;
+  padding: 28px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.spotDetailHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.spotDetailName {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.spotDetailRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.spotDetailSection { margin-bottom: 16px; }
+.spotDetailSectionLabel {
+  font-size: 11px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.costTable { width: 100%; border-collapse: collapse; }
+.costTable td {
+  padding: 4px 0;
+  font-size: 13px;
+  color: #aaa;
+}
+.costTable td:last-child { text-align: right; color: #ccc; }
+.costTableTotal td {
+  border-top: 1px solid #2a2a2a;
+  padding-top: 8px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.spotDetailNote { font-size: 13px; color: #888; line-height: 1.5; }
+
+.modalCloseBtn {
+  width: 100%;
+  padding: 12px;
+  background: #252525;
+  border: 1px solid #333;
+  border-radius: 12px;
+  color: #ccc;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.15s;
+}
+.modalCloseBtn:hover { background: #2f2f2f; }
+
+/* Share modal */
+.shareUrlBox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: #252525;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 16px 0;
+}
+.shareUrl { flex: 1; font-size: 12px; color: #aaa; word-break: break-all; }
+.copyBtn {
+  background: #4f7cf7;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.copyBtn:hover { background: #3a68e0; }
+.copyDone { background: #2e7d32 !important; }
+
+/* Drag handle hint */
+.dragHandle {
+  color: #333;
+  cursor: grab;
+  font-size: 14px;
+  padding: 2px 4px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .homeHeader, .detailHeader, .dayTabsWrapper, .viewTabsWrapper, .scheduleWrapper, .mapView {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .tripGrid { padding-left: 16px; padding-right: 16px; }
+  .spotRow { grid-template-columns: 60px 1fr auto; }
+}

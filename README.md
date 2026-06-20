@@ -1,13 +1,55 @@
-# GitHub Codespaces ♥️ Next.js
+# TripPlan
 
-Welcome to your shiny new Codespace running Next.js! We've got everything fired up and running for you to explore Next.js.
+旅行の日程・訪問スポット・費用を一元管理し、URLで仲間に共有できる Web アプリケーション。
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+## 概要
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+| 項目 | 内容 |
+|---|---|
+| 対象ユーザー | 個人旅行者 |
+| デザイン | モダン・スタイリッシュ（ダーク/ブックモード） |
+| 目的 | 旅行の日程・訪問スポット・費用を一元管理し、URLで仲間に共有できるようにする |
 
-To run this application:
+## 主な機能
 
-```
+- **旅行管理**: 複数の旅行をカード形式で一覧表示・管理
+- **日程管理**: 出発日〜帰宅日の日数分の日程を自動生成
+- **スポット管理**: 日ごとのスポットをドラッグ&ドロップで並び替え
+- **時刻自動計算**: 並び替え後に全スポットの開始時刻を自動再計算
+- **費用管理**: スポットごとに最大3件の費用項目を登録
+- **URL 共有**: `https://tripplan.app/share/{tripId}` で旅行プランを共有
+
+## カテゴリ
+
+| カテゴリ | 用途例 |
+|---|---|
+| 観光 | 寺社・公園など |
+| グルメ | 飲食店・市場など |
+| 散策 | 街歩き・自然散策など |
+| 体験 | アクティビティ・乗り物体験など |
+| 宿泊 | ホテル・旅館など |
+
+## 起動方法
+
+```bash
 npm run dev
 ```
+
+http://localhost:3000 でアクセスできます。
+
+## テックスタック
+
+- **フレームワーク**: Next.js 16 (Pages Router)
+- **UI ライブラリ**: React 18
+- **言語**: TypeScript
+- **スタイリング**: CSS Modules
+
+## ドキュメント
+
+| ドキュメント | 内容 |
+|---|---|
+| [プロダクト要件](docs/product/requirements.md) | 機能要件・画面構成・制約 |
+| [システム概要](docs/architecture/system-overview.md) | アーキテクチャ・ページ構成・状態管理 |
+| [データモデル](docs/architecture/data-model.md) | Trip / Day / Spot / Cost の型定義 |
+| [時刻再計算ロジック](docs/architecture/time-recalc.md) | recalcTimes の仕様と計算例 |
+| [UI/UX 設計方針](docs/uiux/design-principles.md) | デザイン・インタラクション・カラー定義 |

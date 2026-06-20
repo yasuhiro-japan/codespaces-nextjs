@@ -229,6 +229,129 @@
   margin-top: 16px;
 }
 
+/* テーブル形式入力 */
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid #dbe3ef;
+  background: #f8fafc;
+}
+
+.holdingsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.holdingsTable thead {
+  background: #f1f5f9;
+  border-bottom: 2px solid #dbe3ef;
+}
+
+.holdingsTable th {
+  text-align: left;
+  padding: 14px 12px;
+  color: #334155;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+}
+
+.holdingsTable tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.holdingsTable tbody tr:last-child {
+  border-bottom: none;
+}
+
+.holdingsTable td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.symbolCell {
+  min-width: 200px;
+}
+
+.amountCell {
+  min-width: 140px;
+}
+
+.memoCell {
+  min-width: 200px;
+}
+
+.actionCell {
+  width: 50px;
+  text-align: center;
+}
+
+.tableInput,
+.tableTextarea {
+  width: 100%;
+  border: 1px solid #dbe3ef;
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: #0f172a;
+  background: #ffffff;
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.tableInput:focus,
+.tableTextarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.tableTextarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.deleteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+.addBtn {
+  display: block;
+  width: calc(100% - 24px);
+  margin: 12px;
+  padding: 12px 16px;
+  border: 2px solid #2563eb;
+  border-radius: 12px;
+  background: transparent;
+  color: #2563eb;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addBtn:hover {
+  background: #eff6ff;
+}
+
 @media (max-width: 840px) {
   .main {
     padding: 28px 16px 48px;
@@ -259,6 +382,43 @@
   .analysisGrid {
     grid-template-columns: 1fr;
   }
+
+  /* スマートフォン用テーブルスタイル */
+  .tableWrapper {
+    margin: 0 -28px;
+    border-radius: 0;
+  }
+
+  .holdingsTable {
+    font-size: 0.9rem;
+  }
+
+  .holdingsTable th,
+  .holdingsTable td {
+    padding: 10px 8px;
+  }
+
+  .symbolCell {
+    min-width: 120px;
+  }
+
+  .amountCell {
+    min-width: 100px;
+  }
+
+  .memoCell {
+    min-width: 130px;
+  }
+
+  .tableInput,
+  .tableTextarea {
+    font-size: 16px;
+  }
+
+  .addBtn {
+    margin: 12px 8px;
+    width: calc(100% - 16px);
+  }
 }
 
 @media (max-width: 520px) {
@@ -272,5 +432,52 @@
 
   .heroCard strong {
     font-size: 4rem;
+  }
+
+  /* 超小型画面用テーブル */
+  .panel {
+    padding: 16px 0;
+  }
+
+  .holdingsTable {
+    font-size: 0.85rem;
+  }
+
+  .holdingsTable th,
+  .holdingsTable td {
+    padding: 8px 6px;
+  }
+
+  .symbolCell {
+    min-width: 100px;
+  }
+
+  .amountCell {
+    min-width: 80px;
+  }
+
+  .memoCell {
+    min-width: 100px;
+  }
+
+  .tableInput,
+  .tableTextarea {
+    font-size: 16px;
+    padding: 6px 8px;
+  }
+
+  .tableTextarea {
+    min-height: 50px;
+  }
+
+  .deleteBtn {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  .addBtn {
+    margin: 8px 8px;
+    padding: 10px 12px;
   }
 }

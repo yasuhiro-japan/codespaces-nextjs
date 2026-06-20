@@ -1,14 +1,19 @@
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
-  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
-  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',
+    'Helvetica Neue', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
   font-size: 16px;
-  line-height: 1.65;
+  line-height: 1.6;
+  background: #0e0e0e;
+  color: #e8e8e8;
   word-break: break-word;
-  font-kerning: auto;
-  font-variant: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  hyphens: auto;
 }
+
+a { color: inherit; }
+button { font-family: inherit; }
+input, select, textarea { font-family: inherit; }
