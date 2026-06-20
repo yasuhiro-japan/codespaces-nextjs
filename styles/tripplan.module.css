@@ -3,8 +3,8 @@
    ======================== */
 .app {
   min-height: 100vh;
-  background: #0e0e0e;
-  color: #e8e8e8;
+  background: #f5f6fa;
+  color: #1a1a2e;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -20,9 +20,9 @@
 
 .homeTitle {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.5px;
-  color: #fff;
+  color: #1a1a2e;
 }
 
 .addBtn {
@@ -37,9 +37,10 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(79,124,247,0.25);
 }
-.addBtn:hover { background: #3a68e0; }
+.addBtn:hover { background: #3a68e0; box-shadow: 0 4px 14px rgba(79,124,247,0.35); }
 
 .tripGrid {
   display: grid;
@@ -50,15 +51,16 @@
 
 /* Trip Card */
 .tripCard {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
+  background: #fff;
+  border: 1px solid #e8eaf0;
   border-radius: 16px;
   padding: 24px;
   cursor: pointer;
-  transition: border-color 0.15s, transform 0.1s;
+  transition: box-shadow 0.15s, transform 0.1s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 .tripCard:hover {
-  border-color: #4f7cf7;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   transform: translateY(-2px);
 }
 
@@ -71,13 +73,13 @@
 .tripCardTitle {
   font-size: 18px;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin: 0 0 4px;
 }
 
 .tripCardDestination {
   font-size: 13px;
-  color: #888;
+  color: #8890a4;
   margin: 0 0 12px;
 }
 
@@ -90,15 +92,16 @@
 
 .tripCardDate {
   font-size: 12px;
-  color: #aaa;
+  color: #a0a8bc;
 }
 
 .tripCardDays {
   font-size: 12px;
-  background: #2a2a2a;
-  color: #ccc;
-  padding: 2px 8px;
+  background: #eef1fb;
+  color: #4f7cf7;
+  padding: 2px 10px;
   border-radius: 10px;
+  font-weight: 600;
 }
 
 /* Empty state */
@@ -108,12 +111,11 @@
   align-items: center;
   justify-content: center;
   padding: 80px 32px;
-  color: #555;
   text-align: center;
 }
 .emptyIcon { font-size: 56px; margin-bottom: 16px; }
-.emptyText { font-size: 16px; margin-bottom: 8px; color: #666; }
-.emptySubText { font-size: 13px; color: #444; }
+.emptyText { font-size: 16px; margin-bottom: 8px; color: #8890a4; }
+.emptySubText { font-size: 13px; color: #b0b8cc; }
 
 /* ========================
    Modal
@@ -121,7 +123,8 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(30, 30, 60, 0.35);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,25 +133,26 @@
 }
 
 .modal {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
+  background: #fff;
+  border: 1px solid #e8eaf0;
   border-radius: 20px;
   padding: 32px;
   width: 100%;
   max-width: 460px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
 }
 
 .modalTitle {
   font-size: 20px;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin: 0 0 24px;
 }
 
 /* Icon picker */
 .iconPickerLabel {
   font-size: 12px;
-  color: #888;
+  color: #8890a4;
   margin-bottom: 8px;
 }
 
@@ -165,12 +169,12 @@
   height: 44px;
   border-radius: 10px;
   border: 2px solid transparent;
-  background: #252525;
+  background: #f5f6fa;
   cursor: pointer;
-  transition: border-color 0.1s;
+  transition: border-color 0.1s, background 0.1s;
 }
-.iconBtn:hover { border-color: #4f7cf7; }
-.iconBtnActive { border-color: #4f7cf7 !important; background: #1c2e5e !important; }
+.iconBtn:hover { background: #eef1fb; }
+.iconBtnActive { border-color: #4f7cf7 !important; background: #eef1fb !important; }
 
 /* Form fields */
 .formGroup {
@@ -180,23 +184,25 @@
 .formLabel {
   display: block;
   font-size: 12px;
-  color: #888;
+  color: #8890a4;
+  font-weight: 600;
   margin-bottom: 6px;
 }
 
 .formInput {
   width: 100%;
-  background: #252525;
-  border: 1px solid #333;
+  background: #f5f6fa;
+  border: 1.5px solid #e8eaf0;
   border-radius: 10px;
-  color: #e8e8e8;
+  color: #1a1a2e;
   font-size: 14px;
   padding: 10px 14px;
   box-sizing: border-box;
   outline: none;
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, background 0.15s;
 }
-.formInput:focus { border-color: #4f7cf7; }
+.formInput:focus { border-color: #4f7cf7; background: #fff; }
+.formInput::placeholder { color: #c0c8d8; }
 
 .formRow {
   display: grid;
@@ -221,21 +227,22 @@
   font-weight: 600;
   cursor: pointer;
   transition: background 0.15s;
+  box-shadow: 0 2px 8px rgba(79,124,247,0.2);
 }
 .btnPrimary:hover { background: #3a68e0; }
-.btnPrimary:disabled { background: #2a3a6a; color: #555; cursor: not-allowed; }
+.btnPrimary:disabled { background: #c5d2f9; color: #fff; cursor: not-allowed; box-shadow: none; }
 
 .btnSecondary {
   padding: 12px 20px;
-  background: #252525;
-  color: #aaa;
-  border: 1px solid #333;
+  background: #f5f6fa;
+  color: #8890a4;
+  border: 1.5px solid #e8eaf0;
   border-radius: 12px;
   font-size: 14px;
   cursor: pointer;
   transition: background 0.15s;
 }
-.btnSecondary:hover { background: #2f2f2f; }
+.btnSecondary:hover { background: #eef1fb; color: #4f7cf7; }
 
 /* ========================
    Trip Detail
@@ -261,19 +268,19 @@
 .detailTitle {
   font-size: 24px;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin: 0;
 }
 
 .detailMeta {
   font-size: 13px;
-  color: #888;
+  color: #8890a4;
 }
 
 .backBtn {
   background: none;
   border: none;
-  color: #888;
+  color: #8890a4;
   font-size: 13px;
   cursor: pointer;
   padding: 0;
@@ -282,20 +289,21 @@
   align-items: center;
   gap: 4px;
 }
-.backBtn:hover { color: #ccc; }
+.backBtn:hover { color: #4f7cf7; }
 
 .shareBtn {
   padding: 8px 16px;
-  background: #252525;
-  color: #ccc;
-  border: 1px solid #333;
+  background: #fff;
+  color: #4f7cf7;
+  border: 1.5px solid #c5d2f9;
   border-radius: 10px;
   font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.15s, border-color 0.15s;
   white-space: nowrap;
 }
-.shareBtn:hover { background: #2f2f2f; }
+.shareBtn:hover { background: #eef1fb; border-color: #4f7cf7; }
 
 /* Day tabs */
 .dayTabsWrapper {
@@ -308,8 +316,7 @@
 .dayTabs {
   display: flex;
   gap: 4px;
-  border-bottom: 1px solid #2a2a2a;
-  padding-bottom: 0;
+  border-bottom: 1.5px solid #e8eaf0;
   min-width: max-content;
 }
 
@@ -317,15 +324,15 @@
   padding: 8px 16px 12px;
   background: none;
   border: none;
-  color: #666;
+  color: #a0a8bc;
   font-size: 13px;
   cursor: pointer;
   border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
+  margin-bottom: -1.5px;
   transition: color 0.1s, border-color 0.1s;
   white-space: nowrap;
 }
-.dayTab:hover { color: #ccc; }
+.dayTab:hover { color: #4f7cf7; }
 .dayTabActive {
   color: #4f7cf7;
   border-bottom-color: #4f7cf7;
@@ -339,28 +346,28 @@
 
 .viewTabs {
   display: inline-flex;
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
+  background: #eef1fb;
   border-radius: 10px;
   padding: 3px;
   gap: 2px;
 }
 
 .viewTab {
-  padding: 6px 16px;
+  padding: 6px 18px;
   background: none;
   border: none;
-  color: #666;
+  color: #8890a4;
   font-size: 13px;
   cursor: pointer;
   border-radius: 8px;
   transition: background 0.1s, color 0.1s;
 }
-.viewTab:hover { color: #ccc; }
+.viewTab:hover { color: #4f7cf7; }
 .viewTabActive {
-  background: #4f7cf7;
-  color: #fff;
+  background: #fff;
+  color: #4f7cf7;
   font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
 
 /* Schedule */
@@ -377,16 +384,17 @@
   align-items: start;
   gap: 12px;
   padding: 14px 16px;
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
+  background: #fff;
+  border: 1.5px solid #e8eaf0;
   border-radius: 12px;
   cursor: pointer;
-  transition: border-color 0.1s;
+  transition: border-color 0.15s, box-shadow 0.15s;
   user-select: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
-.spotRow:hover { border-color: #3a3a3a; }
+.spotRow:hover { border-color: #c5d2f9; box-shadow: 0 3px 10px rgba(79,124,247,0.1); }
 .spotRowDragging { opacity: 0.4; }
-.spotRowDragOver { border-color: #4f7cf7; border-style: dashed; }
+.spotRowDragOver { border-color: #4f7cf7; border-style: dashed; background: #eef1fb; }
 
 .spotTime {
   display: flex;
@@ -394,49 +402,49 @@
   gap: 2px;
   padding-top: 2px;
 }
-.spotTimeStart { font-size: 13px; font-weight: 600; color: #ccc; }
-.spotTimeEnd { font-size: 11px; color: #555; }
+.spotTimeStart { font-size: 13px; font-weight: 700; color: #1a1a2e; }
+.spotTimeEnd { font-size: 11px; color: #b0b8cc; }
 
 .spotInfo { display: flex; flex-direction: column; gap: 6px; }
 
 .spotNameRow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.spotName { font-size: 15px; font-weight: 600; color: #fff; }
+.spotName { font-size: 15px; font-weight: 600; color: #1a1a2e; }
 
 .spotBadges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 
 .categoryBadge {
   font-size: 11px;
-  padding: 2px 8px;
+  padding: 2px 9px;
   border-radius: 6px;
   font-weight: 600;
 }
-.cat観光 { background: #1e2b5c; color: #7c9ef7; }
-.catグルメ { background: #3a2800; color: #f0a030; }
-.cat散策 { background: #0f2d1a; color: #4caf70; }
-.cat体験 { background: #3a0f28; color: #f07ab0; }
-.cat宿泊 { background: #2a2a2a; color: #aaa; }
+.cat観光 { background: #dde5ff; color: #3a5cc7; }
+.catグルメ { background: #fff0d6; color: #c47a00; }
+.cat散策 { background: #d6f5e3; color: #1e8c4a; }
+.cat体験 { background: #fce4f0; color: #c0306a; }
+.cat宿泊 { background: #ebebeb; color: #606070; }
 
 .durationBadge {
   font-size: 11px;
-  color: #666;
+  color: #b0b8cc;
 }
 
 .spotNote {
   font-size: 12px;
-  color: #777;
+  color: #8890a4;
   line-height: 1.4;
 }
 
 .spotFooter { display: flex; align-items: center; gap: 10px; }
 
-.spotCost { font-size: 12px; color: #aaa; }
+.spotCost { font-size: 12px; color: #4f7cf7; font-weight: 600; }
 .spotLink { font-size: 13px; color: #4f7cf7; text-decoration: none; }
 .spotLink:hover { text-decoration: underline; }
 
 .spotDeleteBtn {
   background: none;
   border: none;
-  color: #444;
+  color: #d0d4e0;
   font-size: 16px;
   cursor: pointer;
   padding: 4px 8px;
@@ -445,7 +453,7 @@
   line-height: 1;
   align-self: start;
 }
-.spotDeleteBtn:hover { color: #e05050; background: #2a1a1a; }
+.spotDeleteBtn:hover { color: #e05050; background: #fff0f0; }
 
 /* Add spot button */
 .addSpotBtn {
@@ -455,38 +463,39 @@
   margin-top: 12px;
   padding: 10px 16px;
   background: none;
-  border: 1px dashed #333;
+  border: 1.5px dashed #c5d2f9;
   border-radius: 12px;
-  color: #666;
+  color: #a0b0e0;
   font-size: 13px;
   cursor: pointer;
   width: 100%;
-  transition: border-color 0.15s, color 0.15s;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
-.addSpotBtn:hover { border-color: #4f7cf7; color: #4f7cf7; }
+.addSpotBtn:hover { border-color: #4f7cf7; color: #4f7cf7; background: #eef1fb; }
 
 /* Add spot form (inline) */
 .addSpotForm {
   margin-top: 12px;
   padding: 20px;
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: #fff;
+  border: 1.5px solid #e8eaf0;
   border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .addSpotFormTitle {
   font-size: 14px;
-  font-weight: 600;
-  color: #ccc;
+  font-weight: 700;
+  color: #1a1a2e;
   margin: 0 0 16px;
 }
 
 .formSelect {
   width: 100%;
-  background: #252525;
-  border: 1px solid #333;
+  background: #f5f6fa;
+  border: 1.5px solid #e8eaf0;
   border-radius: 10px;
-  color: #e8e8e8;
+  color: #1a1a2e;
   font-size: 14px;
   padding: 10px 14px;
   box-sizing: border-box;
@@ -494,14 +503,14 @@
   transition: border-color 0.15s;
   appearance: none;
 }
-.formSelect:focus { border-color: #4f7cf7; }
+.formSelect:focus { border-color: #4f7cf7; background: #fff; }
 
 .formTextarea {
   width: 100%;
-  background: #252525;
-  border: 1px solid #333;
+  background: #f5f6fa;
+  border: 1.5px solid #e8eaf0;
   border-radius: 10px;
-  color: #e8e8e8;
+  color: #1a1a2e;
   font-size: 14px;
   padding: 10px 14px;
   box-sizing: border-box;
@@ -511,7 +520,7 @@
   font-family: inherit;
   transition: border-color 0.15s;
 }
-.formTextarea:focus { border-color: #4f7cf7; }
+.formTextarea:focus { border-color: #4f7cf7; background: #fff; }
 
 /* Cost rows in form */
 .costRows { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
@@ -520,7 +529,7 @@
 .costDeleteBtn {
   background: none;
   border: none;
-  color: #555;
+  color: #c0c8d8;
   font-size: 16px;
   cursor: pointer;
   padding: 4px;
@@ -539,9 +548,10 @@
   font-size: 12px;
   cursor: pointer;
   padding: 0;
+  font-weight: 600;
 }
 .addCostBtn:hover { text-decoration: underline; }
-.addCostBtnDisabled { color: #333 !important; cursor: not-allowed !important; }
+.addCostBtnDisabled { color: #c0c8d8 !important; cursor: not-allowed !important; }
 
 /* Map view */
 .mapView {
@@ -549,9 +559,9 @@
 }
 
 .mapDestination {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  color: #aaa;
+  color: #8890a4;
   margin-bottom: 16px;
 }
 
@@ -560,21 +570,22 @@
   align-items: center;
   gap: 12px;
   padding: 12px 0;
-  border-bottom: 1px solid #1e1e1e;
+  border-bottom: 1px solid #f0f1f6;
 }
 
-.mapSpotTime { font-size: 12px; color: #666; min-width: 80px; }
-.mapSpotName { font-size: 14px; font-weight: 600; color: #ddd; flex: 1; }
-.mapSpotDuration { font-size: 12px; color: #666; }
+.mapSpotTime { font-size: 12px; color: #a0a8bc; min-width: 88px; }
+.mapSpotName { font-size: 14px; font-weight: 600; color: #1a1a2e; flex: 1; }
+.mapSpotDuration { font-size: 12px; color: #b0b8cc; }
 
 /* Spot detail modal */
 .spotDetailModal {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
+  background: #fff;
+  border: 1px solid #e8eaf0;
   border-radius: 20px;
   padding: 28px;
   width: 100%;
   max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
 }
 
 .spotDetailHeader {
@@ -587,7 +598,7 @@
 .spotDetailName {
   font-size: 20px;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin: 0 0 8px;
 }
 
@@ -596,16 +607,17 @@
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  color: #888;
+  color: #8890a4;
   margin-bottom: 12px;
 }
 
 .spotDetailSection { margin-bottom: 16px; }
 .spotDetailSectionLabel {
   font-size: 11px;
-  color: #555;
+  color: #b0b8cc;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
+  font-weight: 700;
   margin-bottom: 6px;
 }
 
@@ -613,61 +625,63 @@
 .costTable td {
   padding: 4px 0;
   font-size: 13px;
-  color: #aaa;
+  color: #8890a4;
 }
-.costTable td:last-child { text-align: right; color: #ccc; }
+.costTable td:last-child { text-align: right; color: #1a1a2e; }
 .costTableTotal td {
-  border-top: 1px solid #2a2a2a;
+  border-top: 1px solid #e8eaf0;
   padding-top: 8px;
-  font-weight: 600;
-  color: #fff;
+  font-weight: 700;
+  color: #4f7cf7;
 }
 
-.spotDetailNote { font-size: 13px; color: #888; line-height: 1.5; }
+.spotDetailNote { font-size: 13px; color: #8890a4; line-height: 1.6; }
 
 .modalCloseBtn {
   width: 100%;
   padding: 12px;
-  background: #252525;
-  border: 1px solid #333;
+  background: #f5f6fa;
+  border: 1.5px solid #e8eaf0;
   border-radius: 12px;
-  color: #ccc;
+  color: #8890a4;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
   margin-top: 20px;
-  transition: background 0.15s;
+  transition: background 0.15s, color 0.15s;
 }
-.modalCloseBtn:hover { background: #2f2f2f; }
+.modalCloseBtn:hover { background: #eef1fb; color: #4f7cf7; }
 
 /* Share modal */
 .shareUrlBox {
   display: flex;
   gap: 8px;
   align-items: center;
-  background: #252525;
-  border: 1px solid #333;
+  background: #f5f6fa;
+  border: 1.5px solid #e8eaf0;
   border-radius: 10px;
   padding: 10px 14px;
   margin: 16px 0;
 }
-.shareUrl { flex: 1; font-size: 12px; color: #aaa; word-break: break-all; }
+.shareUrl { flex: 1; font-size: 12px; color: #8890a4; word-break: break-all; }
 .copyBtn {
   background: #4f7cf7;
   border: none;
   border-radius: 8px;
   color: #fff;
   font-size: 12px;
-  padding: 6px 12px;
+  font-weight: 600;
+  padding: 6px 14px;
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.15s;
 }
 .copyBtn:hover { background: #3a68e0; }
-.copyDone { background: #2e7d32 !important; }
+.copyDone { background: #28a745 !important; }
 
 /* Drag handle hint */
 .dragHandle {
-  color: #333;
+  color: #d0d4e0;
   cursor: grab;
   font-size: 14px;
   padding: 2px 4px;
