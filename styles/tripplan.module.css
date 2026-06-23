@@ -245,6 +245,138 @@
 .btnSecondary:hover { background: #eef1fb; color: #4f7cf7; }
 
 /* ========================
+   Landing Page
+   ======================== */
+.lpPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lpHero {
+  width: 100%;
+  max-width: 640px;
+  padding: 80px 32px 64px;
+  text-align: center;
+}
+
+.lpHeroBadge {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4f7cf7;
+  background: #eef1fb;
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  letter-spacing: 0.4px;
+}
+
+.lpTitle {
+  font-size: 40px;
+  font-weight: 800;
+  color: #1a1a2e;
+  line-height: 1.25;
+  margin: 0 0 20px;
+  letter-spacing: -1px;
+}
+
+.lpSubtitle {
+  font-size: 16px;
+  color: #8890a4;
+  line-height: 1.75;
+  margin: 0 0 40px;
+}
+
+.lpCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  background: #4f7cf7;
+  color: #fff;
+  border: none;
+  border-radius: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  box-shadow: 0 4px 16px rgba(79, 124, 247, 0.35);
+}
+.lpCtaBtn:hover {
+  background: #3a68e0;
+  box-shadow: 0 6px 24px rgba(79, 124, 247, 0.45);
+  transform: translateY(-1px);
+}
+
+.lpFeatureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 880px;
+  padding: 0 32px;
+}
+
+.lpFeatureCard {
+  background: #fff;
+  border: 1px solid #e8eaf0;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.15s, transform 0.1s;
+}
+.lpFeatureCard:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.lpFeatureIcon {
+  font-size: 38px;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.lpFeatureTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 10px;
+}
+
+.lpFeatureDesc {
+  font-size: 13px;
+  color: #8890a4;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.lpFooterCta {
+  padding: 64px 32px 80px;
+  text-align: center;
+}
+
+.lpFooterCtaText {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0 0 20px;
+}
+
+@media (max-width: 640px) {
+  .lpTitle { font-size: 28px; letter-spacing: -0.5px; }
+  .lpHero { padding: 56px 20px 48px; }
+  .lpSubtitle { font-size: 14px; }
+  .lpFeatureGrid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+  .lpFooterCta { padding: 48px 20px 64px; }
+}
+
+/* ========================
    Trip Detail
    ======================== */
 .detailHeader {
