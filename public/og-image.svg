@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#1e2d6e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="1080" cy="80" r="220" fill="#4f7cf7" opacity="0.12"/>
+  <circle cx="120" cy="560" r="160" fill="#4f7cf7" opacity="0.09"/>
+  <circle cx="600" cy="630" r="300" fill="#4f7cf7" opacity="0.05"/>
+
+  <!-- Badge pill -->
+  <rect x="460" y="148" width="280" height="44" rx="22" fill="#4f7cf7" opacity="0.25"/>
+  <text x="600" y="176" text-anchor="middle" font-family="'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="20" font-weight="700" fill="#7aa8ff">&#x2708;&#xFE0F; &#x305F;&#x3073;&#x3057;&#x304A;&#x308A;</text>
+
+  <!-- Main headline -->
+  <text x="600" y="288" text-anchor="middle" font-family="'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="68" font-weight="800" fill="#ffffff">&#x65C5;&#x306E;&#x65E5;&#x7A0B;&#x3092;&#x3001;</text>
+  <text x="600" y="372" text-anchor="middle" font-family="'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="68" font-weight="800" fill="#ffffff">&#x307F;&#x3093;&#x306A;&#x3067;&#x5171;&#x6709;&#x3057;&#x3088;&#x3046;&#x3002;</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="438" text-anchor="middle" font-family="'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="22" fill="#8890a4">&#x30B9;&#x30DD;&#x30C3;&#x30C8;&#x30FB;&#x8CBB;&#x7528;&#x30FB;&#x6642;&#x9593;&#x3092;&#x307E;&#x3068;&#x3081;&#x3066;&#x7BA1;&#x7406;&#x3001;URL&#x3072;&#x3068;&#x3064;&#x3067;&#x4EF2;&#x9593;&#x3068;&#x5171;&#x6709;</text>
+
+  <!-- CTA button -->
+  <rect x="466" y="488" width="268" height="56" rx="28" fill="#4f7cf7"/>
+  <text x="600" y="522" text-anchor="middle" font-family="'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="20" font-weight="700" fill="#ffffff">&#x7121;&#x6599;&#x3067;&#x306F;&#x3058;&#x3081;&#x308B; &#x2192;</text>
+</svg>

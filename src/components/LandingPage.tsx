@@ -6,22 +6,75 @@ interface Props {
   onStart: () => void;
 }
 
+function ScheduleMockup() {
+  const spots = [
+    { time: '09:00', name: '金閣寺', cat: '観光' },
+    { time: '10:30', name: '嵐山竹林', cat: '観光' },
+    { time: '12:00', name: '湯豆腐 嵯峨野', cat: '食事' },
+  ];
+  return (
+    <div className={styles.mockup}>
+      {spots.map((s) => (
+        <div key={s.name} className={styles.mockupSpot}>
+          <span className={styles.mockupTime}>{s.time}</span>
+          <div className={styles.mockupSpotInfo}>
+            <span className={styles.mockupSpotName}>{s.name}</span>
+            <span className={styles.mockupSpotCat}>{s.cat}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CostMockup() {
+  const costs = [
+    { label: '入場料', amount: '¥500' },
+    { label: '交通費', amount: '¥350' },
+    { label: '食費', amount: '¥1,200' },
+  ];
+  return (
+    <div className={styles.mockup}>
+      {costs.map((c) => (
+        <div key={c.label} className={styles.mockupCostRow}>
+          <span className={styles.mockupCostLabel}>{c.label}</span>
+          <span className={styles.mockupCostAmount}>{c.amount}</span>
+        </div>
+      ))}
+      <div className={styles.mockupCostTotal}>
+        <span>合計</span>
+        <span>¥2,050</span>
+      </div>
+    </div>
+  );
+}
+
+function ShareMockup() {
+  return (
+    <div className={styles.mockup}>
+      <p className={styles.mockupShareLabel}>共有リンク</p>
+      <div className={styles.mockupShareUrl}>tripplan.app/share/abc123</div>
+      <div className={styles.mockupShareBtn}>リンクをコピー</div>
+    </div>
+  );
+}
+
 const FEATURES = [
   {
     tag: '日程管理',
-    icon: '🗓️',
+    mockup: <ScheduleMockup />,
     title: 'スポットを追加して\n日程を組む',
     desc: '訪問スポットを追加するだけで、移動時間を考慮した開始・終了時刻を自動計算。ドラッグ＆ドロップで順番も自由に入れ替えられます。',
   },
   {
     tag: '費用管理',
-    icon: '💰',
+    mockup: <CostMockup />,
     title: '費用をスポットごとに\nまとめて記録',
     desc: '交通費・入場料・食費など、スポットごとに最大3件の費用を登録。旅行の総費用をひと目で把握できます。',
   },
   {
     tag: 'URL 共有',
-    icon: '🔗',
+    mockup: <ShareMockup />,
     title: 'URLひとつで\n仲間と共有',
     desc: '「共有」ボタンを押すだけで読み取り専用のリンクを発行。家族や友人に旅程をすぐシェアできます。',
   },
@@ -54,6 +107,11 @@ export default function LandingPage({ onStart }: Props) {
         <meta property="og:title" content={site.name} />
         <meta property="og:description" content={site.metaDescription} />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="/og-image.svg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={site.name} />
+        <meta name="twitter:description" content={site.metaDescription} />
+        <meta name="twitter:image" content="/og-image.svg" />
       </Head>
 
       {/* Header */}
@@ -72,7 +130,8 @@ export default function LandingPage({ onStart }: Props) {
           スポット・費用・時間をまとめて管理して、<br />
           URLひとつで仲間と共有できる旅行プランアプリ。
         </p>
-        <button className={styles.ctaBtn} onClick={onStart}>旅を計画する →</button>
+        <button className={styles.ctaBtn} onClick={onStart}>無料でプランを作る →</button>
+        <p className={styles.heroBadge}>✓ 無料 &nbsp;·&nbsp; 登録不要 &nbsp;·&nbsp; データはブラウザに保存</p>
       </section>
 
       {/* Features */}
@@ -80,8 +139,7 @@ export default function LandingPage({ onStart }: Props) {
         {FEATURES.map((f, i) => (
           <div key={f.tag} className={`${styles.featureRow}${i % 2 === 1 ? ` ${styles.reverse}` : ''}`}>
             <div className={styles.featureVisual}>
-              <span className={styles.featureEmoji}>{f.icon}</span>
-              <span className={styles.featureVisualLabel}>{f.tag}</span>
+              {f.mockup}
             </div>
             <div className={styles.featureContent}>
               <span className={styles.featureTag}>{f.tag}</span>
@@ -115,7 +173,8 @@ export default function LandingPage({ onStart }: Props) {
       {/* Footer CTA */}
       <section className={styles.footerCta}>
         <p className={styles.footerCtaText}>まずは旅を1つ作ってみよう</p>
-        <button className={styles.ctaBtn} onClick={onStart}>はじめる →</button>
+        <button className={styles.ctaBtn} onClick={onStart}>無料ではじめる →</button>
+        <p className={styles.heroBadge}>✓ 無料 &nbsp;·&nbsp; 登録不要</p>
       </section>
     </>
   );

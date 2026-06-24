@@ -256,6 +256,130 @@
   margin: 0;
 }
 
+/* ===== Hero Badge ===== */
+.heroBadge {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: #b0b7c9;
+  letter-spacing: 0.2px;
+}
+
+/* ===== Feature Mockups ===== */
+.mockup {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+/* Schedule mockup */
+.mockupSpot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #f4f5f8;
+  border-radius: 10px;
+}
+
+.mockupTime {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4f7cf7;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.mockupSpotInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.mockupSpotName {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mockupSpotCat {
+  font-size: 11px;
+  color: #8890a4;
+}
+
+/* Cost mockup */
+.mockupCostRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 12px;
+  background: #f4f5f8;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.mockupCostLabel {
+  color: #4a5068;
+}
+
+.mockupCostAmount {
+  font-weight: 700;
+  color: #1a1a2e;
+  font-variant-numeric: tabular-nums;
+}
+
+.mockupCostTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: #eef1fb;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #4f7cf7;
+  margin-top: 2px;
+}
+
+/* Share mockup */
+.mockupShareLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: #8890a4;
+  margin: 0 0 8px;
+}
+
+.mockupShareUrl {
+  padding: 10px 14px;
+  background: #f4f5f8;
+  border: 1px solid #e8eaf0;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #4a5068;
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mockupShareBtn {
+  margin-top: 10px;
+  padding: 10px 0;
+  background: #4f7cf7;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+  text-align: center;
+  cursor: default;
+}
+
 /* ===== Footer CTA ===== */
 .footerCta {
   padding: 80px 32px 100px;
