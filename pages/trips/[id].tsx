@@ -4,6 +4,7 @@ import Head from 'next/head';
 import type { Trip, Spot, Cost, SpotCategory } from '../../src/types/trip';
 import { getTrip, updateTrip, nextSpotId_get } from '../../src/lib/store';
 import { recalcTimes, calcEndTime } from '../../src/lib/recalcTimes';
+import { formatPageTitle } from '../../src/config/site';
 import styles from '../../styles/tripplan.module.css';
 
 const CATEGORIES: SpotCategory[] = ['観光', 'グルメ', '散策', '体験', '宿泊'];
@@ -371,7 +372,7 @@ export default function TripDetailPage() {
   return (
     <div className={styles.app}>
       <Head>
-        <title>{trip.title} — TripPlan</title>
+        <title>{formatPageTitle(trip.title)}</title>
         <meta name="description" content={`${trip.destination} の旅行プラン`} />
       </Head>
 

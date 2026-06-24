@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { formatPageTitle } from '../src/config/site';
 import styles from '../styles/tripplan.module.css';
 
 export default function ServerErrorPage() {
@@ -7,7 +8,7 @@ export default function ServerErrorPage() {
   return (
     <div className={styles.app}>
       <Head>
-        <title>エラーが発生しました — TripPlan</title>
+        <title>{formatPageTitle('エラーが発生しました')}</title>
       </Head>
       <div className={styles.emptyState}>
         <div className={styles.emptyIcon}>⚠️</div>

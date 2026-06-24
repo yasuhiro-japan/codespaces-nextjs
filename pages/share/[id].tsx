@@ -4,6 +4,7 @@ import Head from 'next/head';
 import type { Trip, Spot, Cost } from '../../src/types/trip';
 import { getTrip } from '../../src/lib/store';
 import { calcEndTime } from '../../src/lib/recalcTimes';
+import { formatPageTitle } from '../../src/config/site';
 import styles from '../../styles/tripplan.module.css';
 
 const WEEKDAYS = ['日', '月', '火', '水', '木', '金', '土'];
@@ -129,7 +130,7 @@ export default function SharePage() {
     return (
       <div className={styles.app}>
         <Head>
-          <title>旅行プランが見つかりません — TripPlan</title>
+          <title>{formatPageTitle('旅行プランが見つかりません')}</title>
         </Head>
         <div className={styles.emptyState}>
           <div className={styles.emptyIcon}>🔍</div>
@@ -152,7 +153,7 @@ export default function SharePage() {
   const day = trip.days[activeDayIdx];
   const spots = day.spots;
   const totalDays = calcTotalDays(trip.startDate, trip.endDate);
-  const pageTitle = `${trip.title} — TripPlan`;
+  const pageTitle = formatPageTitle(trip.title);
   const pageDescription = `${trip.destination} ${formatDateFull(trip.startDate)}〜${formatDateFull(trip.endDate)}（${totalDays}日間）`;
 
   return (

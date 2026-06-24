@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { formatPageTitle } from '../src/config/site';
 import styles from '../styles/tripplan.module.css';
 
 export default function NotFoundPage() {
@@ -7,7 +8,7 @@ export default function NotFoundPage() {
   return (
     <div className={styles.app}>
       <Head>
-        <title>ページが見つかりません — TripPlan</title>
+        <title>{formatPageTitle('ページが見つかりません')}</title>
       </Head>
       <div className={styles.emptyState}>
         <div className={styles.emptyIcon}>🗺️</div>

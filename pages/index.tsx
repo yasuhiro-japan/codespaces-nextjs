@@ -3,9 +3,10 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import type { Trip } from '../src/types/trip';
 import { getTrips, addTrip } from '../src/lib/store';
+import { site } from '../src/config/site';
+import LandingPage from '../src/components/LandingPage';
+import CreateTripModal from '../src/components/CreateTripModal';
 import styles from '../styles/tripplan.module.css';
-
-const COVER_OPTIONS = ['✈️', '🗺️', '🏔️', '🌊', '🌸', '🍜', '🏯', '🎌', '🌅', '🚂'];
 
 const WEEKDAYS = ['日', '月', '火', '水', '木', '金', '土'];
 
@@ -22,28 +23,13 @@ function calcDays(start: string, end: string): number {
   return Math.round((e.getTime() - s.getTime()) / 86400000) + 1;
 }
 
-interface CreateForm {
-  cover: string;
-  title: string;
-  destination: string;
-  startDate: string;
-  endDate: string;
-}
-
-const defaultForm = (): CreateForm => ({
-  cover: '✈️',
-  title: '',
-  destination: '',
-  startDate: '',
-  endDate: '',
-});
 
 const headMeta = (
   <Head>
-    <title>TripPlan — 旅行プランを管理・共有</title>
-    <meta name="description" content="旅行の日程・スポット・費用を管理して、URLで仲間に共有できる旅行プランアプリ" />
-    <meta property="og:title" content="TripPlan" />
-    <meta property="og:description" content="旅行の日程・スポット・費用を管理して、URLで仲間に共有できる旅行プランアプリ" />
+    <title>{site.homeTitle}</title>
+    <meta name="description" content={site.metaDescription} />
+    <meta property="og:title" content={site.name} />
+    <meta property="og:description" content={site.metaDescription} />
     <meta property="og:type" content="website" />
   </Head>
 );
@@ -53,106 +39,20 @@ export default function HomePage() {
   const [trips, setTrips] = useState<Trip[]>([]);
   const [initialized, setInitialized] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [form, setForm] = useState<CreateForm>(defaultForm());
 
   useEffect(() => {
     setTrips(getTrips());
     setInitialized(true);
   }, []);
 
-  const openModal = () => {
-    setForm(defaultForm());
-    setShowModal(true);
-  };
+  const openModal = () => setShowModal(true);
 
-  const closeModal = () => setShowModal(false);
-
-  const handleCreate = () => {
-    if (!form.title.trim() || !form.destination.trim() || !form.startDate || !form.endDate) return;
-    const trip = addTrip({
-      cover: form.cover,
-      title: form.title.trim(),
-      destination: form.destination.trim(),
-      startDate: form.startDate,
-      endDate: form.endDate,
-    });
+  const handleCreate = (input: { cover: string; title: string; destination: string; startDate: string; endDate: string }) => {
+    const trip = addTrip(input);
     setTrips(getTrips());
-    closeModal();
+    setShowModal(false);
     router.push(`/trips/${trip.id}`);
   };
-
-  const isFormValid =
-    form.title.trim() && form.destination.trim() && form.startDate && form.endDate && form.startDate <= form.endDate;
-
-  const modal = showModal && (
-    <div className={styles.modalOverlay} onClick={closeModal}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <h2 className={styles.modalTitle}>旅行を作成</h2>
-
-        <p className={styles.iconPickerLabel}>アイコン</p>
-        <div className={styles.iconGrid}>
-          {COVER_OPTIONS.map((emoji) => (
-            <button
-              key={emoji}
-              className={`${styles.iconBtn} ${form.cover === emoji ? styles.iconBtnActive : ''}`}
-              onClick={() => setForm({ ...form, cover: emoji })}
-            >
-              {emoji}
-            </button>
-          ))}
-        </div>
-
-        <div className={styles.formGroup}>
-          <label className={styles.formLabel}>旅行タイトル</label>
-          <input
-            className={styles.formInput}
-            placeholder="例: 京都・大阪の旅"
-            value={form.title}
-            onChange={(e) => setForm({ ...form, title: e.target.value })}
-          />
-        </div>
-
-        <div className={styles.formGroup}>
-          <label className={styles.formLabel}>目的地</label>
-          <input
-            className={styles.formInput}
-            placeholder="例: 京都・大阪"
-            value={form.destination}
-            onChange={(e) => setForm({ ...form, destination: e.target.value })}
-          />
-        </div>
-
-        <div className={styles.formRow}>
-          <div className={styles.formGroup}>
-            <label className={styles.formLabel}>出発日</label>
-            <input
-              type="date"
-              className={styles.formInput}
-              value={form.startDate}
-              onChange={(e) => setForm({ ...form, startDate: e.target.value })}
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label className={styles.formLabel}>帰宅日</label>
-            <input
-              type="date"
-              className={styles.formInput}
-              value={form.endDate}
-              min={form.startDate}
-              onChange={(e) => setForm({ ...form, endDate: e.target.value })}
-            />
-          </div>
-        </div>
-
-        <div className={styles.modalActions}>
-          <button className={styles.btnSecondary} onClick={closeModal}>キャンセル</button>
-          <button className={styles.btnPrimary} onClick={handleCreate} disabled={!isFormValid}>
-            旅行を作成
-          </button>
-        </div>
-      </div>
-    </div>
-  );
 
   if (!initialized) return null;
 
@@ -160,50 +60,8 @@ export default function HomePage() {
   if (trips.length === 0) {
     return (
       <div className={styles.app}>
-        {headMeta}
-        <div className={styles.lpPage}>
-          <div className={styles.lpHero}>
-            <span className={styles.lpHeroBadge}>✈️ TripPlan</span>
-            <h1 className={styles.lpTitle}>
-              旅の日程を、<br />みんなで共有しよう。
-            </h1>
-            <p className={styles.lpSubtitle}>
-              スポット・費用・時間をまとめて管理して、<br />
-              URLひとつで仲間と共有できる旅行プランアプリ。
-            </p>
-            <button className={styles.lpCtaBtn} onClick={openModal}>旅を計画する →</button>
-          </div>
-
-          <div className={styles.lpFeatureGrid}>
-            <div className={styles.lpFeatureCard}>
-              <span className={styles.lpFeatureIcon}>🗓️</span>
-              <h3 className={styles.lpFeatureTitle}>日程を組む</h3>
-              <p className={styles.lpFeatureDesc}>
-                スポットを追加してD&amp;Dで並び替えると、移動時間を踏まえた開始・終了時刻を自動計算。
-              </p>
-            </div>
-            <div className={styles.lpFeatureCard}>
-              <span className={styles.lpFeatureIcon}>💰</span>
-              <h3 className={styles.lpFeatureTitle}>費用を記録</h3>
-              <p className={styles.lpFeatureDesc}>
-                スポットごとに最大3件の費用を登録。交通費・入場料・食費などをまとめて管理できます。
-              </p>
-            </div>
-            <div className={styles.lpFeatureCard}>
-              <span className={styles.lpFeatureIcon}>🔗</span>
-              <h3 className={styles.lpFeatureTitle}>URLで共有</h3>
-              <p className={styles.lpFeatureDesc}>
-                ワンクリックで読み取り専用の共有リンクを発行。友達や家族に旅程を即シェア。
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.lpFooterCta}>
-            <p className={styles.lpFooterCtaText}>まずは旅を1つ作ってみよう</p>
-            <button className={styles.lpCtaBtn} onClick={openModal}>はじめる</button>
-          </div>
-        </div>
-        {modal}
+        <LandingPage onStart={openModal} />
+        {showModal && <CreateTripModal onClose={() => setShowModal(false)} onCreate={handleCreate} />}
       </div>
     );
   }
@@ -213,7 +71,7 @@ export default function HomePage() {
     <div className={styles.app}>
       {headMeta}
       <div className={styles.homeHeader}>
-        <h1 className={styles.homeTitle}>TripPlan</h1>
+        <button className={styles.homeLogoBtn} onClick={() => router.push('/lp')}>{site.name}</button>
         <button className={styles.addBtn} onClick={openModal}>
           + 旅行を追加
         </button>
@@ -233,7 +91,7 @@ export default function HomePage() {
         ))}
       </div>
 
-      {modal}
+      {showModal && <CreateTripModal onClose={() => setShowModal(false)} onCreate={handleCreate} />}
     </div>
   );
 }
