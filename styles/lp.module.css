@@ -393,6 +393,64 @@
   margin: 0 0 28px;
 }
 
+/* ===== Scroll Fade-in ===== */
+.fadeIn {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fadeIn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Quick Destinations ===== */
+.quickDestinations {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.quickDestLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #b0b7c9;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.quickDestChips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.destChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 16px;
+  background: #fff;
+  border: 1.5px solid #e8eaf0;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5068;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, box-shadow 0.15s, transform 0.1s;
+}
+
+.destChip:hover {
+  border-color: #4f7cf7;
+  color: #4f7cf7;
+  box-shadow: 0 2px 8px rgba(79, 124, 247, 0.15);
+  transform: translateY(-1px);
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 640px) {
   .header {

@@ -29,4 +29,5 @@ export interface Trip {
   endDate: string;
   cover: string;
   days: Day[];
+  passwordHash?: string;
 }

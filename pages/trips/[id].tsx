@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import type { Trip, Spot, Cost, SpotCategory } from '../../src/types/trip';
-import { getTrip, updateTrip, nextSpotId_get } from '../../src/lib/store';
+import { getTrip, updateTrip, nextSpotId_get, hashPassword } from '../../src/lib/store';
 import { recalcTimes, calcEndTime } from '../../src/lib/recalcTimes';
 import { formatPageTitle } from '../../src/config/site';
 import styles from '../../styles/tripplan.module.css';
@@ -292,6 +292,59 @@ function ShareModal({ tripId, onClose }: ShareModalProps) {
 }
 
 // ========================
+// UnlockModal
+// ========================
+interface UnlockModalProps {
+  trip: Trip;
+  onUnlock: () => void;
+  onClose: () => void;
+}
+
+function UnlockModal({ trip, onUnlock, onClose }: UnlockModalProps) {
+  const [input, setInput] = useState('');
+  const [error, setError] = useState('');
+  const [checking, setChecking] = useState(false);
+
+  const handleCheck = async () => {
+    if (!input) return;
+    setChecking(true);
+    const hash = await hashPassword(input);
+    if (hash === trip.passwordHash) {
+      onUnlock();
+    } else {
+      setError('パスワードが違います');
+    }
+    setChecking(false);
+  };
+
+  return (
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <h2 className={styles.modalTitle}>🔒 編集のロックを解除</h2>
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>パスワード</label>
+          <input
+            type="password"
+            className={styles.formInput}
+            value={input}
+            onChange={(e) => { setInput(e.target.value); setError(''); }}
+            onKeyDown={(e) => e.key === 'Enter' && handleCheck()}
+            autoFocus
+          />
+        </div>
+        {error && <p className={styles.passwordError}>{error}</p>}
+        <div className={styles.modalActions}>
+          <button className={styles.btnSecondary} onClick={onClose}>キャンセル</button>
+          <button className={styles.btnPrimary} onClick={handleCheck} disabled={!input || checking}>
+            {checking ? '確認中...' : '解除する'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ========================
 // TripDetailPage
 // ========================
 export default function TripDetailPage() {
@@ -304,6 +357,8 @@ export default function TripDetailPage() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [selectedSpot, setSelectedSpot] = useState<Spot | null>(null);
   const [showShare, setShowShare] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [showUnlockModal, setShowUnlockModal] = useState(false);
 
   // D&D state
   const dragIndexRef = useRef<number | null>(null);
@@ -317,6 +372,9 @@ export default function TripDetailPage() {
   }, [id]);
 
   if (!trip) return null;
+
+  const isPasswordProtected = Boolean(trip.passwordHash);
+  const isEditable = !isPasswordProtected || isUnlocked;
 
   const day = trip.days[activeDayIdx];
   const spots = day.spots;
@@ -394,6 +452,15 @@ export default function TripDetailPage() {
             </span>
           </div>
         </div>
+        {isPasswordProtected && (
+          <button
+            className={isUnlocked ? styles.unlockBtn : styles.lockBtn}
+            onClick={() => isUnlocked ? setIsUnlocked(false) : setShowUnlockModal(true)}
+            title={isUnlocked ? 'ロックする' : 'パスワードを入力して編集'}
+          >
+            {isUnlocked ? '🔓 編集中' : '🔒 編集ロック'}
+          </button>
+        )}
         <button className={styles.shareBtn} onClick={() => setShowShare(true)}>
           共有
         </button>
@@ -450,10 +517,10 @@ export default function TripDetailPage() {
                     dragIndexRef.current === i ? styles.spotRowDragging : '',
                     dragOverIndex === i ? styles.spotRowDragOver : '',
                   ].join(' ')}
-                  draggable
-                  onDragStart={() => handleDragStart(i)}
-                  onDragOver={(e) => handleDragOver(e, i)}
-                  onDrop={(e) => handleDrop(e, i)}
+                  draggable={isEditable}
+                  onDragStart={() => isEditable && handleDragStart(i)}
+                  onDragOver={(e) => isEditable && handleDragOver(e, i)}
+                  onDrop={(e) => isEditable && handleDrop(e, i)}
                   onDragEnd={handleDragEnd}
                   onClick={() => setSelectedSpot(spot)}
                 >
@@ -487,28 +554,32 @@ export default function TripDetailPage() {
                       )}
                     </div>
                   </div>
-                  <button
-                    className={styles.spotDeleteBtn}
-                    onClick={(e) => handleDeleteSpot(e, spot.id)}
-                    title="削除"
-                  >
-                    ×
-                  </button>
+                  {isEditable && (
+                    <button
+                      className={styles.spotDeleteBtn}
+                      onClick={(e) => handleDeleteSpot(e, spot.id)}
+                      title="削除"
+                    >
+                      ×
+                    </button>
+                  )}
                 </div>
               );
             })}
           </div>
 
-          {!showAddForm ? (
-            <button className={styles.addSpotBtn} onClick={() => setShowAddForm(true)}>
-              + スポットを追加
-            </button>
-          ) : (
-            <SpotAddForm
-              isFirst={spots.length === 0}
-              onAdd={handleAddSpot}
-              onCancel={() => setShowAddForm(false)}
-            />
+          {isEditable && (
+            !showAddForm ? (
+              <button className={styles.addSpotBtn} onClick={() => setShowAddForm(true)}>
+                + スポットを追加
+              </button>
+            ) : (
+              <SpotAddForm
+                isFirst={spots.length === 0}
+                onAdd={handleAddSpot}
+                onCancel={() => setShowAddForm(false)}
+              />
+            )
           )}
         </div>
       )}
@@ -540,6 +611,15 @@ export default function TripDetailPage() {
       {/* Share modal */}
       {showShare && (
         <ShareModal tripId={trip.id} onClose={() => setShowShare(false)} />
+      )}
+
+      {/* Unlock modal */}
+      {showUnlockModal && (
+        <UnlockModal
+          trip={trip}
+          onUnlock={() => { setIsUnlocked(true); setShowUnlockModal(false); }}
+          onClose={() => setShowUnlockModal(false)}
+        />
       )}
     </div>
   );

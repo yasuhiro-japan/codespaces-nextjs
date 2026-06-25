@@ -1,10 +1,19 @@
+import { useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { site } from '../config/site';
 import styles from '../../styles/lp.module.css';
 
 interface Props {
-  onStart: () => void;
+  onStart: (destination?: string) => void;
 }
+
+const QUICK_DESTINATIONS = [
+  { emoji: '🏯', name: '京都' },
+  { emoji: '🗼', name: '東京' },
+  { emoji: '🌺', name: '沖縄' },
+  { emoji: '🏙️', name: '大阪' },
+  { emoji: '🌸', name: '北海道' },
+];
 
 function ScheduleMockup() {
   const spots = [
@@ -99,6 +108,17 @@ const STEPS = [
 ];
 
 export default function LandingPage({ onStart }: Props) {
+  const fadeRefs = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.classList.toggle(styles.visible, e.isIntersecting)),
+      { threshold: 0.12 }
+    );
+    fadeRefs.current.forEach((el) => { if (el) observer.observe(el); });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <Head>
@@ -117,7 +137,7 @@ export default function LandingPage({ onStart }: Props) {
       {/* Header */}
       <header className={styles.header}>
         <span className={styles.headerLogo}>{site.badge}</span>
-        <button className={styles.headerBtn} onClick={onStart}>旅を計画する →</button>
+        <button className={styles.headerBtn} onClick={() => onStart()}>旅を計画する →</button>
       </header>
 
       {/* Hero */}
@@ -130,14 +150,28 @@ export default function LandingPage({ onStart }: Props) {
           スポット・費用・時間をまとめて管理して、<br />
           URLひとつで仲間と共有できる旅行プランアプリ。
         </p>
-        <button className={styles.ctaBtn} onClick={onStart}>無料でプランを作る →</button>
+        <button className={styles.ctaBtn} onClick={() => onStart()}>無料でプランを作る →</button>
         <p className={styles.heroBadge}>✓ 無料 &nbsp;·&nbsp; 登録不要 &nbsp;·&nbsp; データはブラウザに保存</p>
+        <div className={styles.quickDestinations}>
+          <span className={styles.quickDestLabel}>よく使われる旅先</span>
+          <div className={styles.quickDestChips}>
+            {QUICK_DESTINATIONS.map((d) => (
+              <button key={d.name} className={styles.destChip} onClick={() => onStart(d.name)}>
+                {d.emoji} {d.name}
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Features */}
       <section className={styles.features}>
         {FEATURES.map((f, i) => (
-          <div key={f.tag} className={`${styles.featureRow}${i % 2 === 1 ? ` ${styles.reverse}` : ''}`}>
+          <div
+            key={f.tag}
+            ref={(el) => { fadeRefs.current[i] = el; }}
+            className={`${styles.featureRow}${i % 2 === 1 ? ` ${styles.reverse}` : ''} ${styles.fadeIn}`}
+          >
             <div className={styles.featureVisual}>
               {f.mockup}
             </div>
@@ -155,7 +189,7 @@ export default function LandingPage({ onStart }: Props) {
       </section>
 
       {/* How it works */}
-      <section className={styles.steps}>
+      <section ref={(el) => { fadeRefs.current[3] = el; }} className={`${styles.steps} ${styles.fadeIn}`}>
         <div className={styles.stepsInner}>
           <h2 className={styles.stepsHeading}>かんたん3ステップではじめよう</h2>
           <div className={styles.stepGrid}>
@@ -171,9 +205,9 @@ export default function LandingPage({ onStart }: Props) {
       </section>
 
       {/* Footer CTA */}
-      <section className={styles.footerCta}>
+      <section ref={(el) => { fadeRefs.current[4] = el; }} className={`${styles.footerCta} ${styles.fadeIn}`}>
         <p className={styles.footerCtaText}>まずは旅を1つ作ってみよう</p>
-        <button className={styles.ctaBtn} onClick={onStart}>無料ではじめる →</button>
+        <button className={styles.ctaBtn} onClick={() => onStart()}>無料ではじめる →</button>
         <p className={styles.heroBadge}>✓ 無料 &nbsp;·&nbsp; 登録不要</p>
       </section>
     </>

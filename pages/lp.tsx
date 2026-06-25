@@ -9,7 +9,7 @@ export default function LpPage() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
 
-  function handleCreate(input: { cover: string; title: string; destination: string; startDate: string; endDate: string }) {
+  async function handleCreate(input: { cover: string; title: string; destination: string; startDate: string; endDate: string; passwordHash?: string }) {
     const trip = addTrip(input);
     router.push(`/trips/${trip.id}`);
   }
